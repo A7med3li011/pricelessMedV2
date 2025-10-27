@@ -1,6 +1,6 @@
 import axios from "axios";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./authOptions";
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "./authOptions";
 import { cookies } from "next/headers";
 
 // Create axios instance
@@ -28,13 +28,13 @@ const getLocale = async (): Promise<string> => {
 axiosInstance.interceptors.request.use(
   async (config) => {
     // Get session on server-side to add auth token
-    const session = await getServerSession(authOptions);
+    // const session = await getServerSession(authOptions);
 
     // Add authorization header if user is authenticated
-    const token = session?.accessToken;
-    if (token) {
-      config.headers["authorization"] = `Bearer ${token}`;
-    }
+    // const token = session?.accessToken;
+    // if (token) {
+    //   config.headers["authorization"] = `Bearer ${token}`;
+    // }
 
     // Get current locale and attach as query parameter
     const locale = await getLocale();
