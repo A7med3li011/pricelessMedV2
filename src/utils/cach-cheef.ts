@@ -1,7 +1,6 @@
 // lib/api/base.ts
 import axios from "axios";
 import { cacheLife, cacheTag } from "next/cache";
-// import axiosInstance from "@/lib/axios";
 
 /**
  * Base API call with caching support
