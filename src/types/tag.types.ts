@@ -1,0 +1,22 @@
+export interface Tag {
+  id: string | number;
+  title: string;
+  imageUrl: string;
+  slug?: string;
+  description?: string;
+}
+
+export interface TagsResponse {
+  data: Tag[];
+  success: boolean;
+  message?: string;
+}
+
+export interface ApiResponse<T> {
+  data: T | null;
+  success: boolean;
+  error: {
+    message: string;
+    status: number;
+  } | null;
+}

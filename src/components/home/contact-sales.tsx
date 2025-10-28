@@ -2,14 +2,14 @@ import HeadTitle from "../ui/head-title";
 import networkImage from "../../../public/assets/home/network.png";
 import Image from "next/image";
 import Link from "next/link";
+import MainHeader from "../ui/main-header";
 export default function ContantSales() {
   return (
     <section className=" containter py-10">
       <section className="flex justify-center flex-col items-center gap-y-3">
         <HeadTitle title={"ARE YOU A HOSPITAL OR A CLINIC?"} />
-        <p className="font-bold text-2xl text-center md:text-4xl tracking-[-1.5%] ">
-          Join our growing netrowk
-        </p>
+        <MainHeader text={`Join our growing netrowk`} />
+       
         <p className="text-center text-xs sm:text-sm w-2/3 text-[#717678] leading-6">
           We have 1,000+ healthcare providers across the UAE who are attracting
           new patients, filling appointments, and building loyalty through

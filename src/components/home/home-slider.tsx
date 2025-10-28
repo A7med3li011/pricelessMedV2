@@ -44,7 +44,7 @@ const data = [
 
 export default function HomeSlider() {
   return (
-    <section className="py-20 bg-[linear-gradient(258.69deg,rgba(237,236,247,0.5)_-0.13%,rgba(218,242,255,0.5)_95.76%)]">
+    <section className="py-20 bg-gradient">
       <section className="containter  h-full ">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}

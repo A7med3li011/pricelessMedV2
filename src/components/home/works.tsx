@@ -2,6 +2,7 @@ import glass from "../../../public/assets/home/galss.png";
 import devision from "../../../public/assets/home/devision.png";
 import calendar from "../../../public/assets/home/calendar.png";
 import Image from "next/image";
+import MainHeader from "../ui/main-header";
 
 const arr = [
   {
@@ -29,9 +30,8 @@ export default function Works() {
           How It Work
         </p>
 
-        <h2 className="font-bold text-xl md:text-4xl  md:tracking-[-1.5] my-5">
-          Your path to affordable healthcare
-        </h2>
+        <MainHeader text={" Your path to affordable healthcare"} />
+        <h2 className="font-bold text-xl md:text-4xl  md:tracking-[-1.5] my-5"></h2>
       </section>
 
       <section className=" h-auto mt-15">

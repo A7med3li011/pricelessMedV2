@@ -7,6 +7,14 @@
   margin-right: auto;
 }
 
+@utility bg-gradient {
+  background: linear-gradient(
+    258.69deg,
+    rgba(237, 236, 247, 0.5) -0.13%,
+    rgba(218, 242, 255, 0.5) 95.76%
+  );
+}
+
 /* Hide scrollbar for Chrome, Safari, and Opera */
 ::-webkit-scrollbar {
   display: none;
@@ -38,3 +46,4 @@ body {
     /* @apply bg-background text-foreground; */
   }
 }
+

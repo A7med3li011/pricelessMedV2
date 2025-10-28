@@ -7,8 +7,14 @@ import Works from "../components/home/works";
 import SavingHome from "../components/home/save-home";
 import ContantSales from "../components/home/contact-sales";
 import HomeSlider from "../components/home/home-slider";
+import { Suspense } from "react";
+import Tags from "../components/home/tags/tags-layout";
 
-export default function Home() {
+
+export default async function Home() {
+ 
+  
+
   return (
     <section className="">
       <section className="relative h-screen  md:rounded-md overflow-hidden sm:containter ">
@@ -51,9 +57,12 @@ export default function Home() {
 
       <HomeSearch />
       <Works />
+      <Tags/>
       <SavingHome />
       <ContantSales />
-      <HomeSlider />
+      <Suspense fallback={<div className="py-20 bg-[linear-gradient(258.69deg,rgba(237,236,247,0.5)_-0.13%,rgba(218,242,255,0.5)_95.76%)]" />}>
+        <HomeSlider />
+      </Suspense>
     </section>
   );
 }
