@@ -1,8 +1,9 @@
-"use cache";
+export const runtime = "nodejs";
 import { cacheLife, cacheTag } from "next/cache";
 import { Tag, ApiResponse } from "@/src/types/tag.types";
 
 export async function getTags(lang: string): Promise<ApiResponse<Tag[]>> {
+  "use cache";
   cacheTag(`tags-${lang}`);
   cacheLife({ stale: 3600 }); // 1 hour cache lifetime
 
