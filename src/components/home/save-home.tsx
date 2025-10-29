@@ -19,9 +19,24 @@ export default function SavingHome() {
             saving on your healthcare today.
           </p>
 
-          <section className="flex items-center gap-x-3 my-3">
-            <Image src={appleStroe} alt="phone-frame" />
-            <Image src={ggoolePlay} alt="phone-frame" />
+          <section className="flex items-center gap-x-3 my-3 ">
+            <section className="w-[140px] h-[50px] relative">
+              <Image
+                className=" object-contain"
+                fill
+                src={appleStroe}
+                alt="phone-frame"
+              />
+            </section>
+            <section className="w-[140px] h-[50px] relative">
+              <Image
+                fill
+                className=" object-center"
+                src={ggoolePlay}
+                alt="phone-frame"
+              />
+            </section>
+            {/* <Image width={130} src={ggoolePlay} alt="phone-frame" /> */}
           </section>
         </section>
         <section className="relative h-[466px]">

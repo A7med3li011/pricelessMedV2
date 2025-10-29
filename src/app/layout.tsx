@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-
 import { Poppins } from "next/font/google";
 
 import Header from "../components/ui/header/header";
@@ -26,14 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <main className="">
+        <main className=" overflow-hidden">
           <Header />
           {children}
         </main>
         <footer className="bg-black">
           <Footer />
-
-          
         </footer>
       </body>
     </html>
