@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@utility containter {
+@utility container {
   width: 90%;
 
   margin-left: auto;
@@ -46,4 +46,3 @@ body {
     /* @apply bg-background text-foreground; */
   }
 }
-

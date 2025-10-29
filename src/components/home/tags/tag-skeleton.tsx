@@ -11,7 +11,7 @@ export default function TagSkeleton() {
 
 export function TagGridSkeleton() {
   return (
-    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 containter gap-5 my-10">
+    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 container gap-5 my-10">
       {Array.from({ length: 10 }).map((_, index) => (
         <li key={index} className="bg-white py-3 px-3 rounded-lg">
           <TagSkeleton />

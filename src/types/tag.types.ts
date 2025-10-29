@@ -6,6 +6,14 @@ export interface Tag {
   description?: string;
 }
 
+export interface Banner {
+  id: string | number;
+  title: string;
+  imageUrl: string;
+  link?: string;
+  description?: string;
+}
+
 export interface TagsResponse {
   data: Tag[];
   success: boolean;

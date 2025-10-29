@@ -6,7 +6,7 @@ import HeadTitle from "../ui/head-title";
 export default function SavingHome() {
   return (
     <section className=" bg-[linear-gradient(258.69deg,rgba(237,236,247,0.5)_-0.13%,rgba(218,242,255,0.5)_95.76%)] pt-20">
-      <section className="grid grid-cols-1 md:grid-cols-2 containter items-center ">
+      <section className="grid grid-cols-1 md:grid-cols-2 container items-center ">
         <section className="md:w-2/3">
           <HeadTitle title={` DOWNLOAD OUR APP`} />
 

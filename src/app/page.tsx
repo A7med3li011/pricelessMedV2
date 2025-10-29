@@ -9,12 +9,12 @@ import ContantSales from "../components/home/contact-sales";
 import HomeSlider from "../components/home/home-slider";
 import { Suspense } from "react";
 import Tags from "../components/home/tags/tags-layout";
-
+import BannerLayout from "../components/home/banners/banner-layout";
 
 export default async function Home() {
   return (
     <section className="">
-      <section className="relative h-screen  md:rounded-md overflow-hidden sm:containter ">
+      <section className="relative h-screen  md:rounded-md overflow-hidden sm:container ">
         <Image
           src={mainImage}
           // quality={100}
@@ -55,6 +55,7 @@ export default async function Home() {
 
       <HomeSearch />
       <Works />
+      <BannerLayout />
       <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
         <Tags />
       </Suspense>

@@ -8,32 +8,26 @@ import HeaderAuth from "./headerAuth";
 import { useEffect, useRef, useState } from "react";
 import Links from "../links";
 
-
 export default function Header() {
-  const [toggle,setToggle] = useState(false)
-  const popRef = useRef<HTMLElement>(null)
+  const [toggle, setToggle] = useState(false);
+  const popRef = useRef<HTMLElement>(null);
 
-
-  useEffect(()=>{
-
-    function handleClickOutside (e: MouseEvent){
-
-      if(popRef.current && !popRef.current.contains(e.target as Node)){
-        setToggle(false)
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (popRef.current && !popRef.current.contains(e.target as Node)) {
+        setToggle(false);
       }
     }
 
-     document.addEventListener("click", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
-     return ()=>{
-        document.removeEventListener("click", handleClickOutside);
-
-     }
-    
-  },[])
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <header className="flex   items-center justify-between py-3 containter" >
+    <header className="flex   items-center justify-between py-3 container">
       <section className="">
         <Image
           src={logo}
@@ -44,19 +38,22 @@ export default function Header() {
         />
       </section>
       <section className="hidden items-center lg:flex">
-
-      <Links/>
+        <Links />
       </section>
-      <section ref={popRef} onClick={()=>setToggle(true)} className=" items-center gap-x-3 text-[15px] hidden lg:flex  border-[1px] border-[#DDDDDD] py-2 px-4 rounded-full cursor-pointer relative">
+      <section
+        ref={popRef}
+        onClick={() => setToggle(true)}
+        className=" items-center gap-x-3 text-[15px] hidden lg:flex  border-[1px] border-[#DDDDDD] py-2 px-4 rounded-full cursor-pointer relative"
+      >
         <span>
           <User size={18} />
         </span>
         <span>Login or sign up</span>
 
-       { toggle&&<HeaderAuth />}
+        {toggle && <HeaderAuth />}
       </section>
       <section className="flex lg:hidden border-[1px] border-[#DDDDDD] p-2 rounded-full cursor-pointer">
-          <Menu size={20} />
+        <Menu size={20} />
       </section>
     </header>
   );

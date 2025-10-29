@@ -45,7 +45,7 @@ const data = [
 export default function HomeSlider() {
   return (
     <section className="py-20 bg-gradient">
-      <section className="containter  h-full ">
+      <section className="container  h-full ">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
@@ -112,7 +112,7 @@ export default function HomeSlider() {
             </svg>
           </button>
 
-          <div className="swiper-pagination-custom flex gap-2  items-center justify-center"></div>
+          <span className="swiper-pagination-custom flex gap-2  items-center justify-center" suppressHydrationWarning></span>
 
           <button className="swiper-button-next-custom w-10 h-10 rounded-full transition-colors flex items-center justify-center text-black cursor-pointer">
             <svg

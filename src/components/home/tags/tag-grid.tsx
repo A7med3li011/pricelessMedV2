@@ -24,9 +24,12 @@ export default async function TagGrid({ lang }: { lang: string }) {
   }
 
   return (
-    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 containter gap-5 my-10">
+    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 container gap-5 my-10">
       {res.data.map((ele: Tag, index: number) => (
-        <li key={ele.id || index} className="bg-white py-3 px-3  rounded-lg">
+        <li
+          key={ele.id || index}
+          className="bg-white py-3 px-3  rounded-lg transition-all duration-300 hover:scale-[1.05] hover:shadow-md "
+        >
           <TagCard data={ele} />
         </li>
       ))}

@@ -8,7 +8,7 @@ interface TagCardProps {
 
 export default function TagCard({ data }: TagCardProps) {
   return (
-    <Link href={"/"} className="flex items-center justify-center flex-col">
+    <Link href={"/"} className="flex items-center justify-center flex-col ">
       <section className="mb-4">
         <Image
           src={data?.imageUrl}

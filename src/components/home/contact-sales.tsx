@@ -5,11 +5,11 @@ import Link from "next/link";
 import MainHeader from "../ui/main-header";
 export default function ContantSales() {
   return (
-    <section className=" containter py-10">
+    <section className=" container py-10">
       <section className="flex justify-center flex-col items-center gap-y-3">
         <HeadTitle title={"ARE YOU A HOSPITAL OR A CLINIC?"} />
         <MainHeader text={`Join our growing netrowk`} />
-       
+
         <p className="text-center text-xs sm:text-sm w-2/3 text-[#717678] leading-6">
           We have 1,000+ healthcare providers across the UAE who are attracting
           new patients, filling appointments, and building loyalty through
