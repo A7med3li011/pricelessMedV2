@@ -51,7 +51,7 @@ export default function BannerSlider({ data }: BannerSliderProps) {
                 onClick={() => handleClick(ele?.link)}
                 className="relative cursor-pointer"
               >
-                <section className="relative w-full  h-[500px] bg-amber-300 rounded-lg overflow-hidden">
+                <section className="relative w-full  h-[500px]  rounded-lg overflow-hidden">
                   <Image
                     src={ele.imageUrl}
                     fill
