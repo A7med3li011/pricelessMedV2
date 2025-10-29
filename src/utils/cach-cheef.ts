@@ -7,7 +7,7 @@ import { cacheLife, cacheTag } from "next/cache";
  */
 export async function cachedApiCall<T>({
   endpoint,
-  lang,
+  lang = "en",
   token,
   cacheKey,
   cacheDuration = 600, // 10 minutes default
@@ -26,6 +26,7 @@ export async function cachedApiCall<T>({
 
   // Tag with both general and language-specific tags
   cacheTag(cacheKey);
+
   cacheTag(`${cacheKey}-${lang}`);
 
   cacheLife({

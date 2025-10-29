@@ -1,8 +1,12 @@
 import { Suspense } from "react";
 import HeadTitle from "../../ui/head-title";
 import TagGrid from "./tag-grid";
+import { cookies } from "next/headers";
 
-export default function Tags() {
+export default async function Tags() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("lang")?.value || "en";
+
   return (
     <section className="py-20 my-10 bg-gradient">
       <section className="text-center  sm:w-2/3 mx-auto px-10">
@@ -17,8 +21,8 @@ export default function Tags() {
         </section>
       </section>
 
-      <Suspense>
-        <TagGrid />
+      <Suspense fallback={<div>loading.....</div>}>
+        <TagGrid lang={lang} />
       </Suspense>
     </section>
   );
