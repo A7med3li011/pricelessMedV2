@@ -9,7 +9,7 @@ import ContantSales from "../components/home/contact-sales";
 import HomeSlider from "../components/home/home-slider";
 import { Suspense } from "react";
 import Tags from "../components/home/tags/tags-layout";
-import LanguageButton from "../components/ui/test";
+
 
 export default async function Home() {
   return (
@@ -51,11 +51,11 @@ export default async function Home() {
           </section>
         </section>
       </section>
-      <LanguageButton />
+      {/* <LanguageButton /> */}
 
       <HomeSearch />
       <Works />
-      <Suspense fallback={"hard"}>
+      <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
         <Tags />
       </Suspense>
       <SavingHome />

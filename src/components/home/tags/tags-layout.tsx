@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import HeadTitle from "../../ui/head-title";
 import TagGrid from "./tag-grid";
 import { cookies } from "next/headers";
+import { TagGridSkeleton } from "./tag-skeleton";
 
 export default async function Tags() {
   const cookieStore = await cookies();
@@ -21,7 +22,7 @@ export default async function Tags() {
         </section>
       </section>
 
-      <Suspense fallback={<div>loading.....</div>}>
+      <Suspense fallback={<TagGridSkeleton />}>
         <TagGrid lang={lang} />
       </Suspense>
     </section>

@@ -1,4 +1,3 @@
-export const runtime = "nodejs";
 import { cacheLife, cacheTag } from "next/cache";
 import { Tag, ApiResponse } from "@/src/types/tag.types";
 
