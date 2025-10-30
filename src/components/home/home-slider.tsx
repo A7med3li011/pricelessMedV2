@@ -94,8 +94,8 @@ export default function HomeSlider() {
         </Swiper>
 
         {/* Custom Navigation and Pagination */}
-        <div className="flex items-center justify-center gap-6 mt-6  w-1/3 mx-auto">
-          <button className="swiper-button-prev-custom  w-10 h-10 rounded-full   transition-colors flex items-center justify-center text-black cursor-pointer">
+        <div className="flex items-center justify-center gap-6 mt-6 w-1/3 mx-auto">
+          <button className="swiper-button-prev-custom w-10 h-10 rounded-full transition-colors flex items-center justify-center text-black cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -112,10 +112,10 @@ export default function HomeSlider() {
             </svg>
           </button>
 
-          <span
-            className="swiper-pagination-custom flex gap-2  items-center justify-center"
+          <div
+            className="swiper-pagination-custom flex-1 flex items-center justify-center min-h-[20px]"
             suppressHydrationWarning
-          ></span>
+          ></div>
 
           <button className="swiper-button-next-custom w-10 h-10 rounded-full transition-colors flex items-center justify-center text-black cursor-pointer">
             <svg
@@ -138,34 +138,28 @@ export default function HomeSlider() {
 
       <style jsx global>{`
         .swiper-pagination-custom .swiper-pagination-bullet {
-          width: 10px;
-          height: 10px;
-          background: #d1d5db;
-          opacity: 1;
-          border-radius: 50%;
-          transition: all 0.3s ease;
-          cursor: pointer;
+          width: 10px !important;
+          height: 10px !important;
+          background: rgba(255, 255, 255, 0.5) !important;
+          opacity: 1 !important;
+          border-radius: 50% !important;
+          transition: all 0.3s ease !important;
+          cursor: pointer !important;
+          margin: 0 4px !important;
         }
 
         .swiper-pagination-custom .swiper-pagination-bullet:hover {
-          background: #9ca3af;
+          background: rgba(255, 255, 255, 0.7) !important;
         }
 
         .swiper-pagination-custom .swiper-pagination-bullet-active {
-          background: #b58b7b;
-          width: 40px;
-          border-radius: 5px;
+          background: #b58b7b !important;
+          width: 32px !important;
+          border-radius: 5px !important;
         }
 
-        .swiper-button-prev-custom:hover,
-        .swiper-button-next-custom:hover {
-          opacity: 0.7;
-        }
-
-        .swiper-button-prev-custom.swiper-button-disabled,
-        .swiper-button-next-custom.swiper-button-disabled {
-          opacity: 0.3;
-          cursor: not-allowed;
+        .swiper-slide {
+          height: auto;
         }
       `}</style>
     </section>

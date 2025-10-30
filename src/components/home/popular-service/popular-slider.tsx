@@ -28,7 +28,7 @@ export default function PopularSlider({ data }: PopularSliderProps) {
           }}
           pagination={{
             clickable: true,
-            el: ".swiper-pagination-custom",
+            el: ".swiper-pagination-custom-popular",
             type: "bullets",
           }}
           autoplay={{
@@ -36,12 +36,12 @@ export default function PopularSlider({ data }: PopularSliderProps) {
             disableOnInteraction: false,
           }}
           breakpoints={{
-            320: { slidesPerView: 1, spaceBetween: 16 }, // Mobile
-            480: { slidesPerView: 1.5, spaceBetween: 16 }, // Large mobile
-            640: { slidesPerView: 2, spaceBetween: 20 }, // Small tablets
-            768: { slidesPerView: 2.5, spaceBetween: 24 }, // Medium tablets
-            1024: { slidesPerView: 3, spaceBetween: 24 }, // Laptops
-            1280: { slidesPerView: 4, spaceBetween: 24 }, // Desktops
+            320: { slidesPerView: 1, spaceBetween: 16 },
+            480: { slidesPerView: 1.5, spaceBetween: 16 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 2.5, spaceBetween: 24 },
+            1024: { slidesPerView: 3, spaceBetween: 24 },
+            1280: { slidesPerView: 4, spaceBetween: 24 },
           }}
           className="testimonial-slider mb-8"
         >
@@ -132,10 +132,10 @@ export default function PopularSlider({ data }: PopularSliderProps) {
             </svg>
           </button>
 
-          <span
-            className="swiper-pagination-custom flex gap-2 items-center justify-center flex-1"
-            suppressHydrationWarning
-          ></span>
+          {/* Pagination dots will appear here */}
+          <div
+            className="swiper-pagination-custom-popular flex-1 flex items-center justify-center min-h-[20px]"
+          ></div>
 
           <button
             className="swiper-button-next-custom w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white shadow-sm hover:shadow-md transition-all flex items-center justify-center text-gray-700 hover:text-[#8A44D9] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
@@ -160,44 +160,36 @@ export default function PopularSlider({ data }: PopularSliderProps) {
       </section>
 
       <style jsx global>{`
-        .swiper-pagination-custom {
-          position: relative !important;
-          display: flex !important;
-          gap: 6px;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .swiper-pagination-custom .swiper-pagination-bullet {
+        .swiper-pagination-custom-popular .swiper-pagination-bullet {
           width: 8px !important;
           height: 8px !important;
           background: #d1d5db !important;
           opacity: 1 !important;
           border-radius: 50% !important;
-          transition: all 0.3s ease;
-          cursor: pointer;
-          margin: 0 !important;
+          transition: all 0.3s ease !important;
+          cursor: pointer !important;
+          margin: 0 3px !important;
         }
 
         @media (min-width: 640px) {
-          .swiper-pagination-custom .swiper-pagination-bullet {
+          .swiper-pagination-custom-popular .swiper-pagination-bullet {
             width: 10px !important;
             height: 10px !important;
           }
         }
 
-        .swiper-pagination-custom .swiper-pagination-bullet:hover {
+        .swiper-pagination-custom-popular .swiper-pagination-bullet:hover {
           background: #9ca3af !important;
         }
 
-        .swiper-pagination-custom .swiper-pagination-bullet-active {
+        .swiper-pagination-custom-popular .swiper-pagination-bullet-active {
           background: #8a44d9 !important;
           width: 28px !important;
           border-radius: 4px !important;
         }
 
         @media (min-width: 640px) {
-          .swiper-pagination-custom .swiper-pagination-bullet-active {
+          .swiper-pagination-custom-popular .swiper-pagination-bullet-active {
             width: 32px !important;
           }
         }
