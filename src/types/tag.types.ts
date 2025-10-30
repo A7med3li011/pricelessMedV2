@@ -26,6 +26,12 @@ export interface PopularService {
   facilityCity: string;
   facilityArea: string;
   link?: string;
+  // Additional fields for hospitals/clinics (new facilities)
+  coverImage?: string;
+  organization?: string;
+  facilityType?: string;
+  area?: string;
+  city?: string;
 }
 
 export interface TagsResponse {

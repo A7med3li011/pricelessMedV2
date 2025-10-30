@@ -1,5 +1,4 @@
 "use client";
-import currancy from "../../../../public/assets/home/currancy.svg";
 import { PopularService } from "@/src/types/tag.types";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -10,7 +9,7 @@ interface PopularSliderProps {
   data: PopularService[];
 }
 
-export default function PopularSlider({ data }: PopularSliderProps) {
+export default function HospitalSlider({ data }: PopularSliderProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -66,62 +65,34 @@ export default function PopularSlider({ data }: PopularSliderProps) {
               >
                 <section className="rounded-lg bg-white overflow-hidden relative shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
                   <span className="bg-[#8A44D9] text-white px-2.5 py-1 absolute z-10 text-xs sm:text-sm font-medium rounded-md left-[-3px] rounded-t-none shadow-sm">
-                    save {ele?.discount}%
+                    new
                   </span>
                   <section className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] overflow-hidden bg-gray-100">
                     <Image
-                      src={ele?.imageUrl}
+                      src={ele?.coverImage || ele?.imageUrl || ""}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-cover hover:scale-105 transition-transform duration-300"
-                      alt={ele?.upperText}
+                      alt={ele?.organization || ele?.upperText || "Hospital"}
                       priority={index < 4}
                     />
                   </section>
                   <section className="px-3 sm:px-4 py-3 flex-1 flex flex-col">
-                    <section className="flex gap-x-2 sm:gap-x-3 items-center text-base sm:text-lg mb-2">
-                      <section className="flex items-center gap-x-1">
-                        <section className="w-4 h-4 sm:w-5 sm:h-5 relative flex-shrink-0">
-                          <Image
-                            src={currancy}
-                            alt="currancy"
-                            fill
-                            className="object-contain"
-                          />
-                        </section>
-                        <p className="text-[#8A44D9] font-semibold">
-                          {ele?.discountPrice}
-                        </p>
-                      </section>
-                      <section className="flex items-center gap-x-1 grayscale text-sm sm:text-base">
-                        <section className="w-1 h-1 sm:w-5 sm:h-5 relative ">
-                          <Image
-                            src={currancy}
-                            alt="currancy"
-                            fill
-                            className="object-contain"
-                          />
-                        </section>
-                        <p className="text-[#5E5E5E] line-through  decoration-1">
-                          {ele?.price}
-                        </p>
-                      </section>
-                    </section>
-                    <section className="h-[60px] sm:h-[70px] font-normal text-sm sm:text-[15px] pb-2 sm:pb-3 border-b border-[#DDDDDD]  flex-1">
-                      <p className="mb-2 line-clamp-2">{ele?.upperText}</p>
-                      <p
-                        className="text-xs sm:text-sm font-light
-                       text-gray-600 line-clamp-1"
-                      >
-                        {ele?.lowerText}
+                    <section className="text-sm flex  items-center gap-1">
+                      <p>{ele?.organization}</p>
+                      <p>
+                        {ele?.organization
+                          ?.toLowerCase()
+                          .split(" ")
+                          .includes(ele?.facilityType?.toLowerCase() || "")
+                          ? ""
+                          : ele.facilityType}
                       </p>
                     </section>
 
-                    <section className="text-xs sm:text-sm py-2 sm:py-3 text-[#717678] flex items-center">
-                      <span className="truncate">{ele?.tag}</span>
-                      <span className="w-1 h-1 mx-2 rounded-full inline-block bg-[#717678] flex-shrink-0"></span>
+                    <section className="text-xs sm:text-sm py-1 text-[#717678] flex items-center">
                       <span className="truncate">
-                        {ele?.facilityCity} {ele?.facilityArea}
+                        {ele?.area}, {ele?.city}
                       </span>
                     </section>
                   </section>

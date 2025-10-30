@@ -12,6 +12,7 @@ import Tags from "../components/home/tags/tags-layout";
 import BannerLayout from "../components/home/banners/banner-layout";
 
 import PopularLayout from "../components/home/popular-service/popular-layout";
+import HospitalLayOut from "../components/home/new-hospitals-clinics/hospital-layout";
 
 export default async function Home() {
   return (
@@ -62,6 +63,7 @@ export default async function Home() {
         <Tags />
       </Suspense>
       <PopularLayout />
+      <HospitalLayOut />
       <SavingHome />
       <ContantSales />
       <Suspense
