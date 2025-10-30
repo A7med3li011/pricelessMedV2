@@ -14,6 +14,20 @@ export interface Banner {
   description?: string;
 }
 
+export interface PopularService {
+  id: string | number;
+  imageUrl: string;
+  discount: number;
+  price: number;
+  discountPrice: number;
+  upperText: string;
+  lowerText: string;
+  tag: string;
+  facilityCity: string;
+  facilityArea: string;
+  link?: string;
+}
+
 export interface TagsResponse {
   data: Tag[];
   success: boolean;

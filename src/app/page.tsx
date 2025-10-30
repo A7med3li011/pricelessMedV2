@@ -11,6 +11,8 @@ import { Suspense } from "react";
 import Tags from "../components/home/tags/tags-layout";
 import BannerLayout from "../components/home/banners/banner-layout";
 
+import PopularLayout from "../components/home/popular-service/popular-layout";
+
 export default async function Home() {
   return (
     <section className="">
@@ -59,6 +61,7 @@ export default async function Home() {
       <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
         <Tags />
       </Suspense>
+      <PopularLayout />
       <SavingHome />
       <ContantSales />
       <Suspense

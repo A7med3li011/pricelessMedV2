@@ -112,7 +112,10 @@ export default function HomeSlider() {
             </svg>
           </button>
 
-          <span className="swiper-pagination-custom flex gap-2  items-center justify-center" suppressHydrationWarning></span>
+          <span
+            className="swiper-pagination-custom flex gap-2  items-center justify-center"
+            suppressHydrationWarning
+          ></span>
 
           <button className="swiper-button-next-custom w-10 h-10 rounded-full transition-colors flex items-center justify-center text-black cursor-pointer">
             <svg
