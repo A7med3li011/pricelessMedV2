@@ -1,5 +1,6 @@
 import Image from "next/image";
 import mainImage from "../../public/assets/home/main_home.png";
+import type { Metadata } from "next";
 
 import Link from "next/link";
 import HomeSearch from "../components/home/home-search";
@@ -20,6 +21,49 @@ import NewsLayout from "../components/home/new/news-layout";
 import ServiceGrid from "../components/home/services/service-grid";
 import BlogsLayOut from "../components/home/blogs/blogs-layout";
 import PartnerLayout from "../components/home/partners/partner-layout";
+
+export const metadata: Metadata = {
+  title: "PriceLess Med - Save AED 3,000+ on Healthcare | Affordable Medical Services in UAE",
+  description:
+    "Say goodbye to costly healthcare in UAE. Save over AED 3,000 annually on medical checkups, specialist care, hospital services, and treatments. Browse services from trusted healthcare partners across Dubai, Abu Dhabi, and UAE. Join today and start saving!",
+  keywords: [
+    "affordable healthcare UAE",
+    "medical cost savings",
+    "cheap doctor Dubai",
+    "healthcare discounts UAE",
+    "hospital offers Dubai",
+    "medical checkup deals",
+    "specialist appointments UAE",
+    "preventive care savings",
+    "Dubai clinics",
+    "Abu Dhabi hospitals",
+  ],
+  openGraph: {
+    title: "Say goodbye to costly healthcare - Save AED 3,000+ annually",
+    description:
+      "Save over AED 3,000+ annually on everything from checkups to specialist care in UAE. Browse trusted healthcare services and join today.",
+    type: "website",
+    url: "https://pricelessmed.com",
+    images: [
+      {
+        url: "/assets/home/main_home.png",
+        width: 1200,
+        height: 630,
+        alt: "PriceLess Med - Affordable Healthcare Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Say goodbye to costly healthcare - Save AED 3,000+ annually",
+    description:
+      "Save over AED 3,000+ annually on everything from checkups to specialist care in UAE.",
+    images: ["/assets/home/main_home.png"],
+  },
+  alternates: {
+    canonical: "https://pricelessmed.com",
+  },
+};
 
 export default async function Home() {
   return (
