@@ -68,7 +68,7 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
           <div className="flex gap-4 xs:gap-4 sm:gap-5 md:gap-6">
             {data.map((ele, index) => (
               <div
-                key={ele.id}
+                key={ index}
                 className="flex-[0_0_100%] xs:flex-[0_0_calc(66.666%-11px)] sm:flex-[0_0_calc(50%-10px)] md:flex-[0_0_calc(40%-14px)] lg:flex-[0_0_calc(33.333%-16px)] xl:flex-[0_0_calc(25%-18px)] min-w-0 mx-3"
               >
                 <section className="rounded-lg bg-white overflow-hidden relative shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
