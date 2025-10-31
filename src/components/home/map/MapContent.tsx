@@ -1,89 +1,48 @@
 "use client";
 
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-  Circle,
-} from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import { useEffect, useState } from "react";
+import { GoogleMap, LoadScript, Marker, InfoWindow, Circle } from "@react-google-maps/api";
+import { useEffect, useState, useCallback } from "react";
 import { NearestService, NearestFacility } from "@/src/app/actions/map.action";
 import MapSlider from "./mapSlider";
 
-// Fix for default marker icon issue in Next.js
-const userIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-// Custom icon for facilities
-const facilityIcon = L.icon({
-  iconUrl:
-    "data:image/svg+xml;base64," +
-    btoa(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DC2626" width="32" height="32">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-    </svg>
-  `),
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
-});
-
-// Custom pin icon for selected facility using custom SVG
-const selectedFacilityIcon = L.icon({
-  iconUrl: "/assets/home/pin.svg",
-  iconSize: [20, 48],
-  iconAnchor: [10, 48],
-  popupAnchor: [0, -48],
-});
-
-// Component to update map center when selectedFacility changes
-function MapUpdater({
-  selectedCoords,
-}: {
-  selectedCoords: [number, number] | null;
-}) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (selectedCoords) {
-      map.flyTo(selectedCoords, 16, {
-        duration: 1.5,
-      });
-    }
-  }, [selectedCoords, map]);
-
-  return null;
-}
+const GOOGLE_MAPS_API_KEY = "AIzaSyBODRGUBdifg8y_ZunuYBPgHalUWcoEgz4";
 
 interface MapContentProps {
   long: number;
   lat: number;
 }
 
+const mapContainerStyle = {
+  width: "100%",
+  height: "100%",
+};
+
+const mapOptions: google.maps.MapOptions = {
+  disableDefaultUI: false,
+  zoomControl: true,
+  mapTypeControl: false,
+  streetViewControl: false,
+  fullscreenControl: true,
+  gestureHandling: "greedy",
+  clickableIcons: false,
+};
+
 export default function MapContent({ long, lat }: MapContentProps) {
   const [facilities, setFacilities] = useState<NearestFacility[]>([]);
   const [filteredFacilities, setFilteredFacilities] = useState<
     NearestFacility[]
   >([]);
-  const [selectedCoords, setSelectedCoords] = useState<[number, number] | null>(
+  const [selectedCoords, setSelectedCoords] = useState<{ lat: number; lng: number } | null>(
     null
   );
   const [selectedFacilityId, setSelectedFacilityId] = useState<string | null>(
     null
   );
+  const [activeMarker, setActiveMarker] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [map, setMap] = useState<google.maps.Map | null>(null);
+
+  const center = { lat, lng: long };
 
   useEffect(() => {
     async function fetchFacilities() {
@@ -98,91 +57,154 @@ export default function MapContent({ long, lat }: MapContentProps) {
     fetchFacilities();
   }, [long, lat]);
 
-  useEffect(() => {
-    // Fix for marker icon in production
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-      iconRetinaUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-      shadowUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    });
+  const onLoad = useCallback((map: google.maps.Map) => {
+    setMap(map);
+  }, []);
+
+  const onUnmount = useCallback(() => {
+    setMap(null);
   }, []);
 
   const handleFacilitySelect = (
     coords: [number, number],
     facilityId?: string
   ) => {
-    setSelectedCoords(coords);
+    const newCoords = { lat: coords[0], lng: coords[1] };
+    setSelectedCoords(newCoords);
     setSelectedFacilityId(facilityId || null);
+
+    // Animate to selected location with smooth transition
+    if (map) {
+      map.panTo(newCoords);
+      // Use a slight delay to ensure smooth animation
+      setTimeout(() => {
+        if (map) {
+          map.setZoom(16);
+        }
+      }, 300);
+    }
   };
+
+  const handleMarkerClick = (facilityId: string, coords: [number, number]) => {
+    setActiveMarker(facilityId);
+    handleFacilitySelect(coords, facilityId);
+  };
+
+  // Effect to handle map updates when selectedCoords change
+  useEffect(() => {
+    if (selectedCoords && map) {
+      map.panTo(selectedCoords);
+      setTimeout(() => {
+        if (map) {
+          map.setZoom(16);
+        }
+      }, 300);
+    }
+  }, [selectedCoords, map]);
 
   return (
     <section className="w-full h-[700px] relative overflow-hidden rounded-lg">
-      {/* Map Container */}
-      <MapContainer
-        center={[lat, long]}
-        zoom={13}
-        scrollWheelZoom={false}
-        className="w-full h-full rounded-lg z-0"
-      >
-        <MapUpdater selectedCoords={selectedCoords} />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {/* Purple circle border around selected facility */}
-        {selectedCoords && (
-          <Circle
-            center={selectedCoords}
-            radius={50}
-            pathOptions={{
-              color: "#8A44D9",
-              fillColor: "#8A44D9",
-              fillOpacity: 0.1,
-              weight: 3,
-            }}
-          />
-        )}
-
-        {/* User location marker */}
-        <Marker position={[lat, long]} icon={userIcon}>
-          <Popup>
-            <div className="text-sm">
-              <strong>Your Location</strong>
-              <br />
-              {lat.toFixed(4)}, {long.toFixed(4)}
-            </div>
-          </Popup>
-        </Marker>
-
-        {/* Facility markers */}
-        {filteredFacilities.map((facility) => {
-          const isSelected = selectedFacilityId === facility._id;
-          return (
-            <Marker
-              key={facility._id}
-              position={[
-                facility.location.coordinates[1],
-                facility.location.coordinates[0],
-              ]}
-              icon={isSelected ? selectedFacilityIcon : facilityIcon}
-              eventHandlers={{
-                click: () => {
-                  handleFacilitySelect(
-                    [
-                      facility.location.coordinates[1],
-                      facility.location.coordinates[0],
-                    ],
-                    facility._id
-                  );
-                },
+      {/* Google Map Container */}
+      <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={13}
+          options={mapOptions}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          {/* Purple circle border around selected facility */}
+          {selectedCoords && (
+            <Circle
+              center={selectedCoords}
+              radius={50}
+              options={{
+                strokeColor: "#8A44D9",
+                strokeOpacity: 1,
+                strokeWeight: 3,
+                fillColor: "#8A44D9",
+                fillOpacity: 0.1,
               }}
+            />
+          )}
+
+          {/* User location marker (blue default marker) */}
+          <Marker
+            position={center}
+            title="Your Location"
+            onClick={() => setActiveMarker("user")}
+          />
+
+          {activeMarker === "user" && (
+            <InfoWindow
+              position={center}
+              onCloseClick={() => setActiveMarker(null)}
             >
-              <Popup>
+              <div className="text-sm">
+                <strong>Your Location</strong>
+                <br />
+                {lat.toFixed(4)}, {long.toFixed(4)}
+              </div>
+            </InfoWindow>
+          )}
+
+          {/* Facility markers */}
+          {filteredFacilities.map((facility) => {
+            const position = {
+              lat: facility.location.coordinates[1],
+              lng: facility.location.coordinates[0],
+            };
+            const isSelected = selectedFacilityId === facility._id;
+
+            // Define icon configuration using object literals instead of constructors
+            const iconConfig = isSelected
+              ? {
+                  url: "/assets/home/pin.svg",
+                  scaledSize: { width: 20, height: 48 },
+                  anchor: { x: 10, y: 48 },
+                }
+              : {
+                  url: `data:image/svg+xml;base64,${btoa(`
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DC2626" width="32" height="32">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                  `)}`,
+                  scaledSize: { width: 32, height: 32 },
+                  anchor: { x: 16, y: 32 },
+                };
+
+            return (
+              <Marker
+                key={facility._id}
+                position={position}
+                title={facility.organization}
+                icon={iconConfig}
+                onClick={() =>
+                  handleMarkerClick(facility._id, [
+                    facility.location.coordinates[1],
+                    facility.location.coordinates[0],
+                  ])
+                }
+              />
+            );
+          })}
+
+          {/* Info windows for facilities */}
+          {filteredFacilities.map((facility) => {
+            if (activeMarker !== facility._id) return null;
+
+            const position = {
+              lat: facility.location.coordinates[1],
+              lng: facility.location.coordinates[0],
+            };
+
+            return (
+              <InfoWindow
+                key={`info-${facility._id}`}
+                position={position}
+                onCloseClick={() => setActiveMarker(null)}
+              >
                 <div className="text-sm">
                   <strong>{facility.organization}</strong>
                   <br />
@@ -200,11 +222,11 @@ export default function MapContent({ long, lat }: MapContentProps) {
                     </>
                   )}
                 </div>
-              </Popup>
-            </Marker>
-          );
-        })}
-      </MapContainer>
+              </InfoWindow>
+            );
+          })}
+        </GoogleMap>
+      </LoadScript>
 
       {/* Slider at the bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-[1000] bg-gradient-to-t from-black/20 to-transparent pb-4">
