@@ -162,17 +162,17 @@ export default function MapContent({ long, lat }: MapContentProps) {
       </div>
 
       {/* Top Right Controls - Zoom In and Zoom Out */}
-      <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2 bg-white rounded-full ">
+      <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2 bg-white rounded-full py-3 px-1 shadow-2xl ">
         <button
           onClick={handleZoomIn}
-          className="bg-white hover:bg-gray-50 py-3 px-2 rounded-lg  transition-colors duration-200 cursor-pointer"
+          className="mb-2 cursor-pointer"
           aria-label="Zoom in"
         >
           <Plus className="w-5 h-5 text-[#4EC0FC]" />
         </button>
         <button
           onClick={handleZoomOut}
-          className="bg-white hover:bg-gray-50 py-3 px-2 rounded-lg  transition-colors duration-200 cursor-pointer"
+          className=" cursor-pointer"
           aria-label="Zoom out"
         >
           <Minus className="w-5 h-5 text-[#4EC0FC]" />
