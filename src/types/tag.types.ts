@@ -40,6 +40,12 @@ export interface TagsResponse {
   message?: string;
 }
 
+export interface FAQ {
+  id: string | number;
+  question: string;
+  answer: string;
+}
+
 export interface ApiResponse<T> {
   data: T | null;
   success: boolean;

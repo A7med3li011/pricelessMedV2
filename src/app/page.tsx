@@ -14,6 +14,7 @@ import BannerLayout from "../components/home/banners/banner-layout";
 import PopularLayout from "../components/home/popular-service/popular-layout";
 import HospitalLayOut from "../components/home/new-hospitals-clinics/hospital-layout";
 import MapLayout from "../components/home/map/map-layout";
+import FaqLauout from "../components/home/Faq/faq-layout";
 
 export default async function Home() {
   return (
@@ -67,6 +68,7 @@ export default async function Home() {
 
       <MapLayout />
       <HospitalLayOut />
+      <FaqLauout />
       <SavingHome />
       <ContantSales />
       <Suspense
