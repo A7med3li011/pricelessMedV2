@@ -19,6 +19,7 @@ import LanguageButton from "../components/ui/test";
 import NewsLayout from "../components/home/new/news-layout";
 import ServiceGrid from "../components/home/services/service-grid";
 import BlogsLayOut from "../components/home/blogs/blogs-layout";
+import PartnerLayout from "../components/home/partners/partner-layout";
 
 export default async function Home() {
   return (
@@ -68,6 +69,7 @@ export default async function Home() {
       <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
         <Tags />
       </Suspense>
+      <PartnerLayout />
       <PopularLayout />
 
       <MapLayout />

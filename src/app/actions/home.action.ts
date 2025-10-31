@@ -7,6 +7,7 @@ import {
   FAQ,
   News,
   Blog,
+  Partner,
 } from "@/src/types/tag.types";
 
 export async function getTags(lang: string): Promise<ApiResponse<Tag[]>> {
@@ -283,6 +284,50 @@ export async function getBlogs(lang: string): Promise<ApiResponse<Blog[]>> {
         success: false,
         error: {
           message: `Failed to fetch blogs: ${response.statusText}`,
+          status: response.status,
+        },
+      };
+    }
+
+    const result = await response.json();
+
+    return {
+      data: result.data || [],
+      success: true,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      data: null,
+      success: false,
+      error: {
+        message:
+          err instanceof Error ? err.message : "An unknown error occurred",
+        status: 500,
+      },
+    };
+  }
+}
+export async function getPartners(
+  lang: string
+): Promise<ApiResponse<Partner[]>> {
+  "use cache";
+  cacheTag(`partner-${lang}`);
+  cacheLife({ stale: 3600 }); // 1 hour cache lifetime
+
+  console.log(new Date(), lang, "partner");
+
+  try {
+    const response = await fetch(
+      `https://pricelessmed.com/api/website/our-partners?lang=${lang}`
+    );
+
+    if (!response.ok) {
+      return {
+        data: null,
+        success: false,
+        error: {
+          message: `Failed to fetch partners: ${response.statusText}`,
           status: response.status,
         },
       };

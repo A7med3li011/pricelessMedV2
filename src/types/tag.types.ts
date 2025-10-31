@@ -66,6 +66,13 @@ export interface Blog {
   excerpt?: string;
 }
 
+export interface Partner {
+  id: string | number;
+  imageUrl: string;
+  organization: string;
+  description?: string;
+}
+
 export interface ApiResponse<T> {
   data: T | null;
   success: boolean;
