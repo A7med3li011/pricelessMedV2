@@ -23,7 +23,8 @@ import BlogsLayOut from "../components/home/blogs/blogs-layout";
 import PartnerLayout from "../components/home/partners/partner-layout";
 
 export const metadata: Metadata = {
-  title: "PriceLess Med - Save AED 3,000+ on Healthcare | Affordable Medical Services in UAE",
+  title:
+    "PriceLess Med - Save AED 3,000+ on Healthcare | Affordable Medical Services in UAE",
   description:
     "Say goodbye to costly healthcare in UAE. Save over AED 3,000 annually on medical checkups, specialist care, hospital services, and treatments. Browse services from trusted healthcare partners across Dubai, Abu Dhabi, and UAE. Join today and start saving!",
   keywords: [
