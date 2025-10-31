@@ -10,6 +10,7 @@ import {
 import { useEffect, useState, useCallback } from "react";
 import { NearestService, NearestFacility } from "@/src/app/actions/map.action";
 import MapSlider from "./mapSlider";
+import { Plus, Minus, Search, Settings, SlidersHorizontal } from "lucide-react";
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyBODRGUBdifg8y_ZunuYBPgHalUWcoEgz4";
 
@@ -31,11 +32,10 @@ const mapContainerStyle = {
 };
 
 const mapOptions: google.maps.MapOptions = {
-  disableDefaultUI: false,
-  zoomControl: true,
+  disableDefaultUI: true,
   mapTypeControl: false,
   streetViewControl: false,
-  fullscreenControl: true,
+  fullscreenControl: false,
   gestureHandling: "greedy",
   clickableIcons: false,
 };
@@ -116,8 +116,69 @@ export default function MapContent({ long, lat }: MapContentProps) {
     }
   }, [selectedCoords, map]);
 
+  // Zoom control functions
+  const handleZoomIn = () => {
+    if (map) {
+      const currentZoom = map.getZoom() || 13;
+      map.setZoom(currentZoom + 1);
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (map) {
+      const currentZoom = map.getZoom() || 13;
+      map.setZoom(currentZoom - 1);
+    }
+  };
+
+  const handleSearch = () => {
+    // TODO: Implement search functionality
+    console.log("Search clicked");
+  };
+
+  const handleSettings = () => {
+    // TODO: Implement settings functionality
+    console.log("Settings clicked");
+  };
+
   return (
     <section className="w-full h-[700px] relative overflow-hidden rounded-lg">
+      {/* Top Left Controls - Search and Settings */}
+      <div className="absolute top-4 left-4 z-[1000] flex gap-x-3">
+        <button
+          onClick={handleSearch}
+          className="bg-white hover:bg-gray-50 p-3 rounded-full shadow-lg transition-colors duration-200 cursor-pointer"
+          aria-label="Search"
+        >
+          <Search className="w-5 h-5 text-[#4EC0FC]" />
+        </button>
+        <button
+          onClick={handleSettings}
+          className="bg-white hover:bg-gray-50 p-3 rounded-full shadow-lg transition-colors duration-200 cursor-pointer"
+          aria-label="Settings"
+        >
+          <SlidersHorizontal className="w-5 h-5 text-[#4EC0FC]" />
+        </button>
+      </div>
+
+      {/* Top Right Controls - Zoom In and Zoom Out */}
+      <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2 bg-white rounded-full ">
+        <button
+          onClick={handleZoomIn}
+          className="bg-white hover:bg-gray-50 py-3 px-2 rounded-lg  transition-colors duration-200 cursor-pointer"
+          aria-label="Zoom in"
+        >
+          <Plus className="w-5 h-5 text-[#4EC0FC]" />
+        </button>
+        <button
+          onClick={handleZoomOut}
+          className="bg-white hover:bg-gray-50 py-3 px-2 rounded-lg  transition-colors duration-200 cursor-pointer"
+          aria-label="Zoom out"
+        >
+          <Minus className="w-5 h-5 text-[#4EC0FC]" />
+        </button>
+      </div>
+
       {/* Google Map Container */}
       <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
         <GoogleMap

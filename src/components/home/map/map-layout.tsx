@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Map from "./map";
+import HeadTitle from "../../ui/head-title";
+import MainHeader from "../../ui/main-header";
 
 export default function MapLayout() {
   const [location, setLocation] = useState<{
@@ -11,7 +13,6 @@ export default function MapLayout() {
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
       // Set default location (Dubai, UAE)
       setLocation({ lat: 25.2048, long: 55.2708 });
       return;
@@ -41,12 +42,16 @@ export default function MapLayout() {
   }
 
   return (
-    <div className="w-full">
-      {error && (
+    <div className="container py-20">
+      <section className="text-center">
+        <HeadTitle title={`Explore dubai marina`} />
+        <MainHeader text={`Clinics & hospitals around you`} />
+      </section>
+      {/* {error && (
         <div className="mb-2 p-2 bg-yellow-100 text-yellow-800 text-sm rounded">
           {error} - Using default location
         </div>
-      )}
+      )} */}
       <Map lat={location.lat} long={location.long} />
     </div>
   );
