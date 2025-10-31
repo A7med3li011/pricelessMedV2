@@ -22,9 +22,9 @@ export default async function NewsGrid({ lang }: { lang: string }) {
   }
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {res.data.map((ele, index) => (
-        <li className="" key={index}>
+        <li key={index}>
           <Newcard data={ele} />
         </li>
       ))}
