@@ -1,13 +1,17 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  Circle,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect, useState } from "react";
-import {
-  NearestService,
-  NearestFacility,
-} from "@/src/app/actions/map.action";
+import { NearestService, NearestFacility } from "@/src/app/actions/map.action";
 import MapSlider from "./mapSlider";
 
 // Fix for default marker icon issue in Next.js
@@ -36,6 +40,14 @@ const facilityIcon = L.icon({
   popupAnchor: [0, -32],
 });
 
+// Custom pin icon for selected facility using custom SVG
+const selectedFacilityIcon = L.icon({
+  iconUrl: "/assets/home/pin.svg",
+  iconSize: [20, 48],
+  iconAnchor: [10, 48],
+  popupAnchor: [0, -48],
+});
+
 // Component to update map center when selectedFacility changes
 function MapUpdater({
   selectedCoords,
@@ -46,7 +58,7 @@ function MapUpdater({
 
   useEffect(() => {
     if (selectedCoords) {
-      map.flyTo(selectedCoords, 15, {
+      map.flyTo(selectedCoords, 16, {
         duration: 1.5,
       });
     }
@@ -62,9 +74,15 @@ interface MapContentProps {
 
 export default function MapContent({ long, lat }: MapContentProps) {
   const [facilities, setFacilities] = useState<NearestFacility[]>([]);
-  const [selectedCoords, setSelectedCoords] = useState<
-    [number, number] | null
-  >(null);
+  const [filteredFacilities, setFilteredFacilities] = useState<
+    NearestFacility[]
+  >([]);
+  const [selectedCoords, setSelectedCoords] = useState<[number, number] | null>(
+    null
+  );
+  const [selectedFacilityId, setSelectedFacilityId] = useState<string | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -73,6 +91,7 @@ export default function MapContent({ long, lat }: MapContentProps) {
       const res = await NearestService(long, lat);
       if (res?.data) {
         setFacilities(res.data);
+        setFilteredFacilities(res.data);
       }
       setLoading(false);
     }
@@ -92,8 +111,12 @@ export default function MapContent({ long, lat }: MapContentProps) {
     });
   }, []);
 
-  const handleFacilitySelect = (coords: [number, number]) => {
+  const handleFacilitySelect = (
+    coords: [number, number],
+    facilityId?: string
+  ) => {
     setSelectedCoords(coords);
+    setSelectedFacilityId(facilityId || null);
   };
 
   return (
@@ -102,7 +125,7 @@ export default function MapContent({ long, lat }: MapContentProps) {
       <MapContainer
         center={[lat, long]}
         zoom={13}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         className="w-full h-full rounded-lg z-0"
       >
         <MapUpdater selectedCoords={selectedCoords} />
@@ -110,6 +133,20 @@ export default function MapContent({ long, lat }: MapContentProps) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        {/* Purple circle border around selected facility */}
+        {selectedCoords && (
+          <Circle
+            center={selectedCoords}
+            radius={50}
+            pathOptions={{
+              color: "#8A44D9",
+              fillColor: "#8A44D9",
+              fillOpacity: 0.1,
+              weight: 3,
+            }}
+          />
+        )}
 
         {/* User location marker */}
         <Marker position={[lat, long]} icon={userIcon}>
@@ -123,52 +160,59 @@ export default function MapContent({ long, lat }: MapContentProps) {
         </Marker>
 
         {/* Facility markers */}
-        {facilities.map((facility) => (
-          <Marker
-            key={facility._id}
-            position={[
-              facility.location.coordinates[1],
-              facility.location.coordinates[0],
-            ]}
-            icon={facilityIcon}
-            eventHandlers={{
-              click: () => {
-                handleFacilitySelect([
-                  facility.location.coordinates[1],
-                  facility.location.coordinates[0],
-                ]);
-              },
-            }}
-          >
-            <Popup>
-              <div className="text-sm">
-                <strong>{facility.organization}</strong>
-                <br />
-                <span className="text-gray-600">{facility.facilityType}</span>
-                <br />
-                <span className="text-gray-500">
-                  {facility.area}, {facility.city}
-                </span>
-                {facility.estimatedMinutes && (
-                  <>
-                    <br />
-                    <span className="text-blue-600 font-medium">
-                      {facility.estimatedMinutes} mins away
-                    </span>
-                  </>
-                )}
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {filteredFacilities.map((facility) => {
+          const isSelected = selectedFacilityId === facility._id;
+          return (
+            <Marker
+              key={facility._id}
+              position={[
+                facility.location.coordinates[1],
+                facility.location.coordinates[0],
+              ]}
+              icon={isSelected ? selectedFacilityIcon : facilityIcon}
+              eventHandlers={{
+                click: () => {
+                  handleFacilitySelect(
+                    [
+                      facility.location.coordinates[1],
+                      facility.location.coordinates[0],
+                    ],
+                    facility._id
+                  );
+                },
+              }}
+            >
+              <Popup>
+                <div className="text-sm">
+                  <strong>{facility.organization}</strong>
+                  <br />
+                  <span className="text-gray-600">{facility.facilityType}</span>
+                  <br />
+                  <span className="text-gray-500">
+                    {facility.area}, {facility.city}
+                  </span>
+                  {facility.estimatedMinutes && (
+                    <>
+                      <br />
+                      <span className="text-blue-600 font-medium">
+                        {facility.estimatedMinutes} mins away
+                      </span>
+                    </>
+                  )}
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
 
       {/* Slider at the bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-[1000] bg-gradient-to-t from-black/20 to-transparent pb-4">
         <MapSlider
-          facilities={facilities}
+          facilities={filteredFacilities}
           onFacilitySelect={handleFacilitySelect}
           loading={loading}
+          selectedFacilityId={selectedFacilityId}
         />
       </div>
     </section>

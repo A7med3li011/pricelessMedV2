@@ -37,7 +37,7 @@ export async function NearestService(
 ): Promise<NearestServiceResponse> {
   try {
     const response = await fetch(
-      `https://pricelessmed.com/api/website/nearby-facilities?longitude=${55.270782}&latitude=${25.204849}`
+      `https://pricelessmed.com/api/website/nearby-facilities?longitude=${long}&latitude=${lat}`
     );
 
     if (!response.ok) {
