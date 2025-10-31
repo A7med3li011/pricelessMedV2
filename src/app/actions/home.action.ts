@@ -153,7 +153,7 @@ export async function getHospitalService(
         data: null,
         success: false,
         error: {
-          message: `Failed to fetch popular services: ${response.statusText}`,
+          message: `Failed to fetch hospital services: ${response.statusText}`,
           status: response.status,
         },
       };
