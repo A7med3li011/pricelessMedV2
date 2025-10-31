@@ -46,6 +46,15 @@ export interface FAQ {
   answer: string;
 }
 
+export interface News {
+  id: string | number;
+  title: string;
+  imageUrl: string;
+  date: string;
+  content?: string;
+  category?: string;
+}
+
 export interface ApiResponse<T> {
   data: T | null;
   success: boolean;

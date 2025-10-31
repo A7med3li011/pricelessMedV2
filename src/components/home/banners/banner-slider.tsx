@@ -13,7 +13,7 @@ export default function BannerSlider({ data }: BannerSliderProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-      align: 'start',
+      align: "start",
       slidesToScroll: 1,
     },
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
@@ -77,7 +77,7 @@ export default function BannerSlider({ data }: BannerSliderProps) {
                       src={ele.imageUrl}
                       fill
                       alt={ele?.title}
-                      className="object-center"
+                      className=" object-cover"
                     />
                   </section>
                 </section>

@@ -15,6 +15,8 @@ import PopularLayout from "../components/home/popular-service/popular-layout";
 import HospitalLayOut from "../components/home/new-hospitals-clinics/hospital-layout";
 import MapLayout from "../components/home/map/map-layout";
 import FaqLauout from "../components/home/Faq/faq-layout";
+import LanguageButton from "../components/ui/test";
+import NewsLayout from "../components/home/new/news-layout";
 
 export default async function Home() {
   return (
@@ -56,7 +58,6 @@ export default async function Home() {
           </section>
         </section>
       </section>
-      {/* <LanguageButton /> */}
 
       <HomeSearch />
       <Works />
@@ -68,6 +69,7 @@ export default async function Home() {
 
       <MapLayout />
       <HospitalLayOut />
+      <NewsLayout />
       <FaqLauout />
       <SavingHome />
       <ContantSales />
@@ -78,6 +80,8 @@ export default async function Home() {
       >
         <HomeSlider />
       </Suspense>
+
+      {/* <LanguageButton /> */}
     </section>
   );
 }

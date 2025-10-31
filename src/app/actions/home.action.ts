@@ -5,6 +5,7 @@ import {
   PopularService,
   ApiResponse,
   FAQ,
+  News,
 } from "@/src/types/tag.types";
 
 export async function getTags(lang: string): Promise<ApiResponse<Tag[]>> {
@@ -179,9 +180,7 @@ export async function getHospitalService(
     };
   }
 }
-export async function getFAQ(
-  lang: string
-): Promise<ApiResponse<FAQ[]>> {
+export async function getFAQ(lang: string): Promise<ApiResponse<FAQ[]>> {
   "use cache";
   cacheTag(`FAQ-service-${lang}`);
   cacheLife({ stale: 86400 }); // 24 hours cache lifetime
@@ -199,6 +198,48 @@ export async function getFAQ(
         success: false,
         error: {
           message: `Failed to fetch FAQ: ${response.statusText}`,
+          status: response.status,
+        },
+      };
+    }
+
+    const result = await response.json();
+
+    return {
+      data: result.data || [],
+      success: true,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      data: null,
+      success: false,
+      error: {
+        message:
+          err instanceof Error ? err.message : "An unknown error occurred",
+        status: 500,
+      },
+    };
+  }
+}
+export async function LatestNews(lang: string): Promise<ApiResponse<News[]>> {
+  "use cache";
+  cacheTag(`latest-news-${lang}`);
+  cacheLife({ stale: 3600 }); // 24 hours cache lifetime
+
+  console.log(new Date(), lang, "News");
+
+  try {
+    const response = await fetch(
+      `https://pricelessmed.com/api/website/latest-press?lang=${lang}`
+    );
+
+    if (!response.ok) {
+      return {
+        data: null,
+        success: false,
+        error: {
+          message: `Failed to fetch NEWs: ${response.statusText}`,
           status: response.status,
         },
       };
