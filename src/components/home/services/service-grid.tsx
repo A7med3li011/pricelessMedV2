@@ -43,7 +43,7 @@ export default function ServiceGrid() {
               <h3 className="text-sm md:text-[19px] font-bold text-gray-900 mb-3 capitalize">
                 {ele.title}
               </h3>
-              <p className="text-sm md:text-base text-[#717678] leading-relaxed">
+              <p className="text-sm md:text-base text-[#717678] leading-relaxed ">
                 {ele.desc}
               </p>
               <CustomButton

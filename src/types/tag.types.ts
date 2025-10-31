@@ -55,6 +55,17 @@ export interface News {
   category?: string;
 }
 
+export interface Blog {
+  id: string | number;
+  title: string;
+  imageUrl: string;
+  date: string;
+  content?: string;
+  category?: string;
+  author?: string;
+  excerpt?: string;
+}
+
 export interface ApiResponse<T> {
   data: T | null;
   success: boolean;

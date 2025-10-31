@@ -18,6 +18,7 @@ import FaqLauout from "../components/home/Faq/faq-layout";
 import LanguageButton from "../components/ui/test";
 import NewsLayout from "../components/home/new/news-layout";
 import ServiceGrid from "../components/home/services/service-grid";
+import BlogsLayOut from "../components/home/blogs/blogs-layout";
 
 export default async function Home() {
   return (
@@ -72,6 +73,8 @@ export default async function Home() {
       <MapLayout />
       <HospitalLayOut />
       <NewsLayout />
+      <HospitalLayOut />
+      <BlogsLayOut />
       <FaqLauout />
       <SavingHome />
       <ContantSales />
