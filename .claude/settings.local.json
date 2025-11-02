@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npm run build:*)",
-      "Bash(nul)"
+      "Bash(nul)",
+      "WebSearch",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

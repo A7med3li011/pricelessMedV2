@@ -1,4 +1,5 @@
 import HealthContent from "@/src/components/health-hub/health-hub-content";
+import HealthHubSkeleton from "@/src/components/health-hub/health-hub-skeleton";
 import NewsContent from "@/src/components/news/news-content";
 import AnimatedSection from "@/src/components/ui/animated-section";
 import HeadTitle from "@/src/components/ui/head-title";
@@ -13,7 +14,7 @@ export default function newsRoomPage() {
           <HeadTitle title={`Latest updates`} />
           <MainHeader text={`Newsroom`} />
         </AnimatedSection>
-        <Suspense>
+        <Suspense fallback={<HealthHubSkeleton />}>
           <NewsContent />
         </Suspense>
       </section>

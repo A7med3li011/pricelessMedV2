@@ -1,4 +1,5 @@
 import HealthContent from "@/src/components/health-hub/health-hub-content";
+import HealthHubSkeleton from "@/src/components/health-hub/health-hub-skeleton";
 import AnimatedSection from "@/src/components/ui/animated-section";
 import HeadTitle from "@/src/components/ui/head-title";
 import MainHeader from "@/src/components/ui/main-header";
@@ -12,7 +13,7 @@ export default function HealthHubPage() {
           <HeadTitle title={`Tips & Insights`} />
           <MainHeader text={`Health Hub`} />
         </AnimatedSection>
-        <Suspense>
+        <Suspense fallback={<HealthHubSkeleton />}>
           <HealthContent />
         </Suspense>
       </section>
