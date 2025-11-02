@@ -228,12 +228,12 @@ export default function MapContent({ long, lat }: MapContentProps) {
             };
             const isSelected = selectedFacilityId === facility._id;
 
-            // Define icon configuration using object literals instead of constructors
+            // Define icon configuration with proper Google Maps API classes
             const iconConfig = isSelected
               ? {
                   url: SELECTED_PIN_SVG,
-                  scaledSize: { width: 20, height: 48 },
-                  anchor: { x: 10, y: 48 },
+                  scaledSize: new google.maps.Size(20, 48),
+                  anchor: new google.maps.Point(10, 48),
                 }
               : {
                   url: `data:image/svg+xml;base64,${btoa(`
@@ -241,8 +241,8 @@ export default function MapContent({ long, lat }: MapContentProps) {
                       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                     </svg>
                   `)}`,
-                  scaledSize: { width: 32, height: 32 },
-                  anchor: { x: 16, y: 32 },
+                  scaledSize: new google.maps.Size(32, 32),
+                  anchor: new google.maps.Point(16, 32),
                 };
 
             return (
