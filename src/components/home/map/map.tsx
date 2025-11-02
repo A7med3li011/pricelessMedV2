@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import GoogleMapsProvider from "@/src/components/providers/GoogleMapsProvider";
 
 interface MapProps {
   long: number;
@@ -17,5 +18,9 @@ const MapContent = dynamic(() => import("./MapContent"), {
 });
 
 export default function Map({ long, lat }: MapProps) {
-  return <MapContent lat={lat} long={long} />;
+  return (
+    <GoogleMapsProvider>
+      <MapContent lat={lat} long={long} />
+    </GoogleMapsProvider>
+  );
 }

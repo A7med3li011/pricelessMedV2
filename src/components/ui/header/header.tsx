@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <header className="flex   items-center justify-between py-3 container">
-      <section className="">
+      <Link href={"/"}>
         <Image
           src={logo}
           width={201}
@@ -36,7 +36,7 @@ export default function Header() {
           alt="pricelessMedd"
           priority
         />
-      </section>
+      </Link>
       <section className="hidden items-center lg:flex">
         <Links />
       </section>

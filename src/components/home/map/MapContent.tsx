@@ -2,7 +2,6 @@
 
 import {
   GoogleMap,
-  LoadScript,
   Marker,
   InfoWindow,
   Circle,
@@ -11,8 +10,6 @@ import { useEffect, useState, useCallback } from "react";
 import { NearestService, NearestFacility } from "@/src/app/actions/map.action";
 import MapSlider from "./mapSlider";
 import { Plus, Minus, Search, Settings, SlidersHorizontal } from "lucide-react";
-
-const GOOGLE_MAPS_API_KEY = "AIzaSyBODRGUBdifg8y_ZunuYBPgHalUWcoEgz4";
 
 // Inline SVG for selected facility pin (purple pin)
 const SELECTED_PIN_SVG = `data:image/svg+xml;base64,${btoa(`
@@ -180,15 +177,14 @@ export default function MapContent({ long, lat }: MapContentProps) {
       </div>
 
       {/* Google Map Container */}
-      <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={center}
-          zoom={13}
-          options={mapOptions}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        center={center}
+        zoom={13}
+        options={mapOptions}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
           {/* Purple circle border around selected facility */}
           {selectedCoords && (
             <Circle
@@ -300,8 +296,7 @@ export default function MapContent({ long, lat }: MapContentProps) {
               </InfoWindow>
             );
           })}
-        </GoogleMap>
-      </LoadScript>
+      </GoogleMap>
 
       {/* Slider at the bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-[1000] bg-gradient-to-t from-black/20 to-transparent pb-4">
