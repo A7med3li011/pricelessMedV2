@@ -229,21 +229,25 @@ export default function MapContent({ long, lat }: MapContentProps) {
             const isSelected = selectedFacilityId === facility._id;
 
             // Define icon configuration with proper Google Maps API classes
-            const iconConfig = isSelected
-              ? {
-                  url: SELECTED_PIN_SVG,
-                  scaledSize: new google.maps.Size(20, 48),
-                  anchor: new google.maps.Point(10, 48),
-                }
-              : {
-                  url: `data:image/svg+xml;base64,${btoa(`
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DC2626" width="32" height="32">
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                  `)}`,
-                  scaledSize: new google.maps.Size(32, 32),
-                  anchor: new google.maps.Point(16, 32),
-                };
+            // Only create icon config if google.maps is available
+            let iconConfig;
+            if (typeof google !== 'undefined' && google.maps && google.maps.Size && google.maps.Point) {
+              iconConfig = isSelected
+                ? {
+                    url: SELECTED_PIN_SVG,
+                    scaledSize: new google.maps.Size(20, 48),
+                    anchor: new google.maps.Point(10, 48),
+                  }
+                : {
+                    url: `data:image/svg+xml;base64,${btoa(`
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DC2626" width="32" height="32">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                      </svg>
+                    `)}`,
+                    scaledSize: new google.maps.Size(32, 32),
+                    anchor: new google.maps.Point(16, 32),
+                  };
+            }
 
             return (
               <Marker
