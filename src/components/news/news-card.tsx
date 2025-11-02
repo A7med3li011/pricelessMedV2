@@ -29,10 +29,10 @@ export default function NewsCard({ data }: NewsCardProps) {
       </section>
       <section className="px-3 py-2 bg-white">
         <p className="font-normal text-sm mb-1">Press Release</p>
-        <p className="font-semibold text-[15px] mb-3 leading-6 tracking-[-0.2px]">
+        <p className="font-semibold text-[15px] mb-3 leading-6 tracking-[-0.2px] h-13">
           {data?.title.slice(0, 50)}...
         </p>
-        <p className="text-xs text-[#717678]">{data?.date}</p>
+        <p className="text-xs text-[#717678] pb-2">{data?.date}</p>
       </section>
     </motion.section>
   );
