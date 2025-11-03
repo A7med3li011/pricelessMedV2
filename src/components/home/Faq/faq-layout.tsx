@@ -2,7 +2,8 @@ import { Suspense } from "react";
 import HeadTitle from "../../ui/head-title";
 import MainHeader from "../../ui/main-header";
 import FaqContent from "./faq-content";
-import CustomButton from "../../ui/customButton";
+
+import Link from "next/link";
 
 export default function FaqLauout() {
   return (
@@ -20,10 +21,12 @@ export default function FaqLauout() {
 
       <section className="text-center mx-auto w-1/3 font-semibold mt-10">
         <p className=" tracking-[-0.2px] font-semibold">Have more questions?</p>
-        <CustomButton
-          text={`Contact us`}
-          style={`text-[#13ACFC] py-2  px-3  my-7 border-[1px] border-[#13ACFC] rounded-full text-sm`}
-        />
+        <Link
+          href={`/contact-us`}
+          className="text-[#13ACFC] py-2  px-3  block w-fit mx-auto my-7 hover:bg-[#13ACFC] hover:text-white  transition-colors duration-500 hover:border-white border-[1px] border-[#13ACFC] rounded-full text-sm"
+        >
+          Contact us
+        </Link>
       </section>
     </section>
   );
