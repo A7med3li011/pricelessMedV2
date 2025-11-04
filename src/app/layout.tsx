@@ -6,6 +6,7 @@ import { Poppins } from "next/font/google";
 
 import Header from "../components/ui/header/header";
 import Footer from "../components/ui/footer";
+import { ToasterProvider } from "../components/providers/toast-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -172,6 +173,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <main className=" overflow-hidden">
           <Header />
+          <ToasterProvider />
           {children}
         </main>
         <footer className="bg-black">

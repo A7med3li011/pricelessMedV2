@@ -46,3 +46,27 @@ body {
     /* @apply bg-background text-foreground; */
   }
 }
+
+/* Custom styles for PhoneInput component */
+.phone-input-custom .PhoneInputInput {
+  border: none !important;
+  outline: none !important;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.phone-input-custom .PhoneInputInput:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.phone-input-custom .PhoneInputCountry {
+  margin-right: 8px;
+}
+
+.phone-input-custom {
+  display: flex;
+  align-items: center;
+}
