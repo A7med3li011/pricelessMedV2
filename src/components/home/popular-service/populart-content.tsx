@@ -1,4 +1,4 @@
-import getLang from "@/src/app/helpers/getLang";
+import getLang from "@/src/app/[locale]/helpers/getLang";
 import PopularGrid from "./popular-grid";
 
 export default async function PopularContent() {

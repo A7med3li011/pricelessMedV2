@@ -7,19 +7,19 @@ export default function UserAuth() {
   return (
     <section>
       {" "}
-      <section className="flex items-center justify-between  border-[1px] border-[#DDDDDD] px-4 py-3 rounded-full mt-10">
+      <section className="flex items-center justify-between  border border-[#DDDDDD] px-4 py-3 rounded-full mt-10">
         <section className="">
           <Image src={apple} priority alt="apple icon" />
         </section>
         <p className=" w-3/4">Continue with Apple</p>
       </section>
-      <section className="flex items-center justify-between  border-[1px] border-[#DDDDDD] px-4 py-3 rounded-full mt-5">
+      <section className="flex items-center justify-between  border border-[#DDDDDD] px-4 py-3 rounded-full mt-5">
         <section className="">
           <Image src={facebook} priority alt="apple icon" />
         </section>
         <p className=" w-3/4">Continue with Facebook</p>
       </section>
-      <section className="flex items-center justify-between  border-[1px] border-[#DDDDDD] px-4 py-3 rounded-full mt-5">
+      <section className="flex items-center justify-between  border border-[#DDDDDD] px-4 py-3 rounded-full mt-5">
         <section className="">
           <Image src={google} priority alt="apple icon" />
         </section>
@@ -32,7 +32,7 @@ export default function UserAuth() {
       </section>
       <input
         placeholder="Enter phone number"
-        className="mt-5 border-[1px]  border-[#DDDDDD] w-full p-4  rounded-md focus:outline-0"
+        className="mt-5 border  border-[#DDDDDD] w-full p-4  rounded-md focus:outline-0"
       />
       <CustomButton
         text={"Continue"}

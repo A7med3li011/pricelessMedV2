@@ -1,4 +1,4 @@
-import getLang from "@/src/app/helpers/getLang";
+import getLang from "@/src/app/[locale]/helpers/getLang";
 import HealthGrid from "./health-grid";
 import { Suspense } from "react";
 

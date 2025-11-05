@@ -1,4 +1,4 @@
-import getLang from "@/src/app/helpers/getLang";
+import getLang from "@/src/app/[locale]/helpers/getLang";
 import FaqController from "./Faq-controller";
 
 export default async function FaqContent() {
