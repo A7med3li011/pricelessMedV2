@@ -126,7 +126,7 @@ export default function Header() {
 
   return (
     <header className="bg-white mb-2">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto ">
         <div className="flex items-center justify-between py-3 gap-4">
           {/* Logo */}
           <Link href="/">
