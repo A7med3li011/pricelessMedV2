@@ -76,7 +76,7 @@ export default async function Home({
       <div className="bg-amber-300">
         <LanguageButton />
       </div>
-      {t("title")}
+      {/* {t("title")} */}
       <HomeSearch />
       <Works />
       <BannerLayout />
