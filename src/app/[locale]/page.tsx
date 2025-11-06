@@ -16,7 +16,7 @@ import PopularLayout from "../../components/home/popular-service/popular-layout"
 import HospitalLayOut from "../../components/home/new-hospitals-clinics/hospital-layout";
 import MapLayout from "../../components/home/map/map-layout";
 import FaqLauout from "../../components/home/Faq/faq-layout";
-import LanguageButton from "../../components/ui/test";
+
 import NewsLayout from "../../components/home/new/news-layout";
 import ServiceGrid from "../../components/home/services/service-grid";
 import BlogsLayOut from "../../components/home/blogs/blogs-layout";
@@ -31,7 +31,7 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  // const t = await getTranslations({ locale, namespace: "" });
+  const t = await getTranslations({ locale, namespace: "home" });
 
   return (
     <section className="">
@@ -49,52 +49,46 @@ export default async function Home({
 
         <section className="  relative  z-40  top-3/5 text-white ps-5 md:ps-10  2xl:w-1/3">
           <h1 className="font-bold text-xl md:text-3xl lg:text-5xl lg: lg:leading-14 lg:tracking-[-1.5px] tracking-wide ">
-            Say goodbye to costly healthcare
+            {t("hero.title")}
           </h1>
-          <p className="leading-7 my-5 lg:my-7">
-            Save AED 3,000+ annually on everything from checkups to specialist
-            care.
-          </p>
+          <p className="leading-7 my-5 lg:my-7">{t("hero.description")}</p>
 
           <section className="flex items-center gap-x-5">
             <Link
               href={"/"}
               className="py-2 px-3 rounded-full bg-white text-[#13ACFC]  border-[2px] border-white text-sm font-semibold"
             >
-              Join today
+              {t("hero.joinToday")}
             </Link>
             <Link
               href={"/"}
               className="py-2 px-3 rounded-full bg-transparent text-white border-[2px] border-white  text-sm font-semibold"
             >
-              Browse services
+              {t("hero.browseServices")}
             </Link>
           </section>
         </section>
       </section>
 
-      <div className="bg-amber-300">
-        <LanguageButton />
-      </div>
       {/* {t("title")} */}
       <HomeSearch />
-      <Works />
-      <BannerLayout />
-      <ServiceGrid />
+      <Works t={t} />
+      <BannerLayout t={t} />
+      <ServiceGrid t={t} />
       <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
-        <Tags />
+        <Tags t={t} />
       </Suspense>
-      <PartnerLayout />
-      <PopularLayout />
+      <PartnerLayout t={t} />
+      <PopularLayout t={t} />
 
       <MapLayout />
-      <HospitalLayOut />
-      <NewsLayout />
-      <HospitalLayOut />
-      <BlogsLayOut />
-      <FaqLauout />
-      <SavingHome />
-      <ContantSales />
+      <HospitalLayOut t={t} />
+      <NewsLayout t={t} />
+      {/* <HospitalLayOut /> */}
+      <BlogsLayOut t={t} />
+      <FaqLauout t={t} />
+      <SavingHome t={t} />
+      <ContantSales t={t} />
       <Suspense
         fallback={
           <div className="py-20 bg-[linear-gradient(258.69deg,rgba(237,236,247,0.5)_-0.13%,rgba(218,242,255,0.5)_95.76%)]" />

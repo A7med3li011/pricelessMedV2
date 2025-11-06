@@ -3,14 +3,15 @@ import HeadTitle from "../../ui/head-title";
 import MainHeader from "../../ui/main-header";
 import PopularContent from "./populart-content";
 
-export default function PopularLayout() {
+export default function PopularLayout({ t }) {
   return (
     <section className="bg-gradient py-20 mb-10">
       <section className="container">
-        <section className="">
-          <HeadTitle title={`BEST DEALS`} />
-          <MainHeader text={`Popular healthcare services`} />
+        <section>
+          <HeadTitle title={t("popular.title")} />
+          <MainHeader text={t("popular.subtitle")} />
         </section>
+
         <Suspense>
           <PopularContent />
         </Suspense>

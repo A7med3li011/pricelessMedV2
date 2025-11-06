@@ -4,20 +4,20 @@ import TagGrid from "./tag-grid";
 import { cookies } from "next/headers";
 import { TagGridSkeleton } from "./tag-skeleton";
 
-export default async function Tags() {
+export default async function Tags({ t }) {
   const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value || "en";
 
   return (
     <section className="py-20 my-10 bg-gradient">
       <section className="text-center  sm:w-2/3 mx-auto px-10">
-        <HeadTitle title={"FOR EVERY NEED"} />
+        <HeadTitle title={t("tags.subtitle")} />
         <section>
           <p className="font-bold text-xl md:text-3xl  md:tracking-[-1.5%] mb-3 mt-5">
-            Comprehensive care from
+            {t("tags.line1")}
           </p>
           <p className="font-bold text-xl md:text-3xl  md:tracking-[-1.5%] mb-3">
-            checkups to specialized treatment
+            {t("tags.line2")}
           </p>
         </section>
       </section>

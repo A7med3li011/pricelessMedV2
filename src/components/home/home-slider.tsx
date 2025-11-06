@@ -4,6 +4,7 @@ import womenImage from "../../../public/assets/home/Photo.svg";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
+import { useLocale } from "next-intl";
 
 const data = [
   {
@@ -39,10 +40,14 @@ const data = [
 ];
 
 export default function HomeSlider() {
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-      align: 'center'
+      align: 'center',
+      direction: isRTL ? 'rtl' : 'ltr'
     },
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
@@ -133,7 +138,7 @@ export default function HomeSlider() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
+                d={isRTL ? "M8.25 4.5l7.5 7.5-7.5 7.5" : "M15.75 19.5L8.25 12l7.5-7.5"}
               />
             </svg>
           </button>
@@ -169,7 +174,7 @@ export default function HomeSlider() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                d={isRTL ? "M15.75 19.5L8.25 12l7.5-7.5" : "M8.25 4.5l7.5 7.5-7.5 7.5"}
               />
             </svg>
           </button>

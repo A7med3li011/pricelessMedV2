@@ -43,6 +43,9 @@ export default function LocaleSwitcher() {
         return;
       }
 
+      // Save language to cookies
+      document.cookie = `lang=${newLocale}; path=/; max-age=${60 * 60 * 24 * 365}`; // 1 year
+
       startTransition(() => {
         router.push(pathname, { locale: newLocale });
         closeDropdown();
