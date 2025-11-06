@@ -131,17 +131,14 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
-            aria-label="Go to homepage"
           >
             <Image
-              src={logo}
-              width={201}
-              height={39}
-              alt="PricelessMed Logo"
-              priority
-              className="h-auto w-auto max-w-[150px] md:max-w-[201px]"
-            />
+          src={logo}
+          width={201}
+          height={39}
+          alt="pricelessMedd"
+          priority
+        />
           </Link>
 
           {/* Desktop Navigation */}
