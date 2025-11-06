@@ -43,8 +43,8 @@ export default async function RootLayout({
   const messages = await getMessages({ locale });
   const direction = getDirection(locale);
   const font = getFont(locale);
-   
-  console.log(messages)
+
+  console.log(messages);
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <head>
@@ -58,7 +58,7 @@ export default async function RootLayout({
       <body className={font}>
         <AuthProvider>
           <LocaleProvider messages={messages} locale={locale}>
-            <main className=" overflow-hidden">
+            <main className=" ">
               <Header />
               {children}
             </main>

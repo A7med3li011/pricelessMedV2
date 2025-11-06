@@ -165,8 +165,9 @@ export default function LocaleSwitcher() {
               absolute right-0 mt-2 min-w-[180px] 
               bg-white dark:bg-gray-800 
               border border-gray-200 dark:border-gray-700 
-              rounded-lg shadow-xl z-20 overflow-hidden
+              rounded-lg shadow-xl overflow-hidden
               animate-in fade-in slide-in-from-top-2 duration-200
+              z-50
             `}
             role="menu"
             aria-orientation="vertical"

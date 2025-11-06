@@ -1,6 +1,6 @@
 {
   "common":{
-    "loginSignup":"تسجيل الدخول أو أنشاء حساب "
+    "loginSignup":"Login or Sign up"
   },
   "menu": {
     "service": "Service",
