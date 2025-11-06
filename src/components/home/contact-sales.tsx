@@ -3,17 +3,16 @@ import networkImage from "../../../public/assets/home/network.png";
 import Image from "next/image";
 import Link from "next/link";
 import MainHeader from "../ui/main-header";
-export default function ContantSales() {
+export default function ContantSales({ t }) {
   return (
     <section className=" container py-10">
       <section className="flex justify-center flex-col items-center gap-y-3">
-        <HeadTitle title={"ARE YOU A HOSPITAL OR A CLINIC?"} />
-        <MainHeader text={`Join our growing netrowk`} />
+        <HeadTitle title={t("contactSales.title")} />
+
+        <MainHeader text={t("contactSales.subtitle")} />
 
         <p className="text-center text-xs sm:text-sm w-2/3 text-[#717678] leading-6">
-          We have 1,000+ healthcare providers across the UAE who are attracting
-          new patients, filling appointments, and building loyalty through
-          PricelessMed.
+          {t("contactSales.description")}
         </p>
       </section>
       <section className=" w-fit mx-auto mt-10">
@@ -32,7 +31,7 @@ export default function ContantSales() {
           href={"/"}
           className="text-[#13ACFC] border-[1px] border-[#13ACFC] rounded-full px-3 py-2 text-xs font-semibold   block my-7   w-fit mx-auto "
         >
-          Contact sales team
+          {t("contactSales.button")}
         </Link>
       </section>
     </section>

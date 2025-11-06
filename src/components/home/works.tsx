@@ -4,33 +4,32 @@ import calendar from "../../../public/assets/home/calendar.png";
 import Image from "next/image";
 import MainHeader from "../ui/main-header";
 
-const arr = [
-  {
-    image: glass,
-    title: "Find your perfect deal",
-    desc: "Explore hundreds of deals across dentistry, diagnostics, specialists, and wellness services at top-rated clinics.",
-  },
-  {
-    image: calendar,
-    title: "Connect with your clinic",
-    desc: "View clinic details, location, and contact information. Reach out directly to book your appointment at a time that works for you.",
-  },
-  {
-    image: devision,
-    title: "Show up & save",
-    desc: "Present your PricelessMed voucher at the clinic and enjoy savings of up to 70% on quality healthcare.",
-  },
-];
-
-export default function Works() {
+export default function Works({ t }) {
+  const arr = [
+    {
+      image: glass,
+      title: t("works.steps_one.title"),
+      desc: t("works.steps_one.description"),
+    },
+    {
+      image: calendar,
+      title: t("works.steps_two.title"),
+      desc: t("works.steps_two.description"),
+    },
+    {
+      image: devision,
+      title: t("works.steps_three.title"),
+      desc: t("works.steps_three.description"),
+    },
+  ];
   return (
     <section className="lg:w-2/3 mx-auto my-10 ">
       <section className="text-center">
         <p className="text-sm my-3 bg-gradient-to-b from-[#13ACFC] to-[#8A44D9] font-semibold bg-clip-text text-transparent">
-          How It Work
+          {t("works.badge")}
         </p>
 
-        <MainHeader text={" Your path to affordable healthcare"} />
+        <MainHeader text={t("works.header")} />
         <h2 className="font-bold text-xl md:text-4xl  md:tracking-[-1.5] my-5"></h2>
       </section>
 

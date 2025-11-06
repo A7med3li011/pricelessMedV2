@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import Map from "./map";
 import HeadTitle from "../../ui/head-title";
 import MainHeader from "../../ui/main-header";
+import { useTranslations } from "next-intl";
 
 export default function MapLayout() {
+  const t = useTranslations("home");
   const [location, setLocation] = useState<{
     lat: number | null;
     long: number | null;
@@ -36,7 +38,7 @@ export default function MapLayout() {
   if (!location.lat || !location.long) {
     return (
       <div className="w-full h-[700px] bg-gray-100 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">Loading location...</p>
+        <p className="text-gray-500">{t("map.loadingLocation")}</p>
       </div>
     );
   }
@@ -44,8 +46,8 @@ export default function MapLayout() {
   return (
     <div className="container py-20">
       <section className="text-center">
-        <HeadTitle title={`Explore dubai marina`} />
-        <MainHeader text={`Clinics & hospitals around you`} />
+        <HeadTitle title={t("map.title")} />
+        <MainHeader text={t("map.subtitle")} />
       </section>
       {/* {error && (
         <div className="mb-2 p-2 bg-yellow-100 text-yellow-800 text-sm rounded">

@@ -2,16 +2,12 @@
 
 import { cookies } from "next/headers";
 
-export async function switchLanguage() {
+export async function switchLanguage({ lang }: { lang: string }) {
   const cookieStore = await cookies();
 
-  const currentLang = cookieStore.get("lang")?.value || "en";
-  const newLang = currentLang === "en" ? "ar" : "en";
+  const newLang = lang;
 
-  cookieStore.set("lang", newLang, {
-    path: "/",
-    maxAge: 60 * 60 * 24 * 30, // 30 days
-  });
+  cookieStore.set("lang", lang);
 
   return { lang: newLang };
 }

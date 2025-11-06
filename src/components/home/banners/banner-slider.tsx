@@ -4,17 +4,22 @@ import { Banner } from "@/src/types/tag.types";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
+import { useLocale } from "next-intl";
 
 interface BannerSliderProps {
   data: Banner[];
 }
 
 export default function BannerSlider({ data }: BannerSliderProps) {
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "start",
       slidesToScroll: 1,
+      direction: isRTL ? 'rtl' : 'ltr'
     },
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );

@@ -3,15 +3,13 @@ import HeadTitle from "../../ui/head-title";
 import MainHeader from "../../ui/main-header";
 import PartnerContent from "./partner-content";
 
-export default function PartnerLayout() {
+export default function PartnerLayout({ t }) {
   return (
     <section className="container">
       <section className="text-center w-2/3 md:w-6/12 mx-auto">
-        <HeadTitle title={`Most trusted hospitals`} />
+        <HeadTitle title={t("partner.title")} />
 
-        <MainHeader
-          text={`Discover our network of trusted hospital partners `}
-        />
+        <MainHeader text={t("partner.subtitle")} />
       </section>
       <Suspense>
         <PartnerContent />
