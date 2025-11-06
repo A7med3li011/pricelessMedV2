@@ -21,10 +21,18 @@ import NewsLayout from "../../components/home/new/news-layout";
 import ServiceGrid from "../../components/home/services/service-grid";
 import BlogsLayOut from "../../components/home/blogs/blogs-layout";
 import PartnerLayout from "../../components/home/partners/partner-layout";
+import { getTranslations } from "next-intl/server";
+import { createPageMetadata } from "@/src/utils/createPageMetadata";
 
+export const generateMetadata = createPageMetadata("home");
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "sexxxx" });
 
-export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-  // const { locale } = await params;
   return (
     <section className="">
       <section className="relative h-screen  md:rounded-md overflow-hidden sm:container ">
@@ -65,6 +73,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </section>
       </section>
 
+      <div className="bg-amber-300">
+        <LanguageButton />
+      </div>
+      {t("title")}
       <HomeSearch />
       <Works />
       <BannerLayout />
@@ -90,8 +102,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       >
         <HomeSlider />
       </Suspense>
-
-      {/* <LanguageButton /> */}
     </section>
   );
 }
