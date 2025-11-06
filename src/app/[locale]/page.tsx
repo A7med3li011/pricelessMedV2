@@ -31,7 +31,7 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "sexxxx" });
+  const t = await getTranslations({ locale, namespace: "" });
 
   return (
     <section className="">
