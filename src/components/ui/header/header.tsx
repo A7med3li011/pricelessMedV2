@@ -125,20 +125,18 @@ export default function Header() {
   }, [isAuthOpen, closeAuthPopup]);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <header className="bg-white mb-2">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-3 gap-4">
           {/* Logo */}
-          <Link
-            href="/"
-          >
+          <Link href="/">
             <Image
-          src={logo}
-          width={201}
-          height={39}
-          alt="pricelessMedd"
-          priority
-        />
+              src={logo}
+              width={201}
+              height={39}
+              alt="pricelessMedd"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

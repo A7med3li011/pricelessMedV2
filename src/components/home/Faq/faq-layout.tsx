@@ -2,8 +2,7 @@ import { Suspense } from "react";
 import HeadTitle from "../../ui/head-title";
 import MainHeader from "../../ui/main-header";
 import FaqContent from "./faq-content";
-
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
 
 export default function FaqLauout({ t }) {
   return (
