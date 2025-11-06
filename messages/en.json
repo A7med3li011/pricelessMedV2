@@ -1,58 +1,68 @@
 {
-       "metadata": {
-         "title": "PriceLess Med",
-         "description": "Your trusted partner for affordable healthcare services in the UAE.", 
-     
-         "home": {
-           "title": "Home",
-           "description": "Access affordable medical checkups, specialist care, and hospital services in UAE."
-         },
-         "services": {
-           "title": "Our Services",
-           "description": "Explore the range of medical and healthcare services offered by PriceLess Med."
-         },
-         "hospitals": {
-           "title": "Partner Hospitals",
-           "description": "Find a list of accredited hospitals and medical centers in our network."
-         },
-         "partners": {
-           "title": "Our Partners",
-           "description": "Meet our trusted partners and collaborators in the healthcare sector."
-         },
-         "blog": {
-           "title": "Health Blog",
-           "description": "Read the latest articles and insights on health, wellness, and medical news."
-         },
-         "news": {
-           "title": "Latest News",
-           "description": "Official announcements and updates from PriceLess Med."
-         },
-         "faq": {
-           "title": "FAQ",
-           "description": "Find answers to frequently asked questions about our memberships and services."
-         },
-         "about": {
-           "title": "About Us",
-           "description": "Learn more about our mission, vision, and commitment to affordable healthcare."
-         },
-         "contact": {
-           "title": "Contact Us",
-           "description": "Get in touch with our support team or send us your inquiries."
-         },
-         "businessData": {
-           "name": "PriceLess Med",
-           "description": "Save over AED 3,000 annually...",
-           "telephone": "+971-XXX-XXXX",
-           "specialties": [
-             "GeneralPractice",
-             "Cardiology"
-           ]
-         },
-         "seo": {
-           "aggregateRating": {
-             "ratingValue": "4.8",
-             "reviewCount": "1250"
-           }
-         }
-       }
-     }
+  "common":{
+    "loginSignup":"تسجيل الدخول أو أنشاء حساب "
+  },
+  "menu": {
+    "service": "Service",
+    "healthHub": "HealthHub",
+    "newsroom": "Newsroom",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "metadata": {
+      "title": "PriceLess Med",
+      "description": "Your trusted partner for affordable healthcare services in the UAE.", 
+
+      "home": {
+        "title": "Home",
+        "description": "Access affordable medical checkups, specialist care, and hospital services in UAE."
+      },
+      "services": {
+        "title": "Our Services",
+        "description": "Explore the range of medical and healthcare services offered by PriceLess Med."
+      },
+      "hospitals": {
+        "title": "Partner Hospitals",
+        "description": "Find a list of accredited hospitals and medical centers in our network."
+      },
+      "partners": {
+        "title": "Our Partners",
+        "description": "Meet our trusted partners and collaborators in the healthcare sector."
+      },
+      "blog": {
+        "title": "Health Blog",
+        "description": "Read the latest articles and insights on health, wellness, and medical news."
+      },
+      "news": {
+        "title": "Latest News",
+        "description": "Official announcements and updates from PriceLess Med."
+      },
+      "faq": {
+        "title": "FAQ",
+        "description": "Find answers to frequently asked questions about our memberships and services."
+      },
+      "about": {
+        "title": "About Us",
+        "description": "Learn more about our mission, vision, and commitment to affordable healthcare."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "Get in touch with our support team or send us your inquiries."
+      },
+      "businessData": {
+        "name": "PriceLess Med",
+        "description": "Save over AED 3,000 annually...",
+        "telephone": "+971-XXX-XXXX",
+        "specialties": [
+          "GeneralPractice",
+          "Cardiology"
+        ]
+      },
+      "seo": {
+        "aggregateRating": {
+          "ratingValue": "4.8",
+          "reviewCount": "1250"
+        }
+      }
+  }
+}

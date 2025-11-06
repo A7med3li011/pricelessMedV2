@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         source: '/',
         destination: '/en',
         permanent: false,
-        locale: false, // مهم جداً: لتطبيق القاعدة على جميع اللغات
+        locale: false,
       },
     ]
   },

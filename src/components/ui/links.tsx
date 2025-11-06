@@ -1,21 +1,22 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@/src/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
-const links = [
-  { title: "service", referance: "/service" },
-  { title: "health Hub", referance: "/health-hub" },
-  { title: "newsroom", referance: "/news-room" },
-  { title: "about", referance: "/about" },
-  { title: "contact", referance: "/contact-us" },
-];
 type LinksProps = {
   light?: boolean; // optional, defaults to false
 };
 export default function Links({ light = false }: LinksProps) {
+  const t = useTranslations("menu");
+  const links = [
+    { title: t("service"), referance: "/service" },
+    { title: t("healthHub"), referance: "/health-hub" },
+    { title: t("newsroom"), referance: "/news-room" },
+    { title: t("about"), referance: "/about" },
+    { title: t("contact"), referance: "/contact-us" },
+  ];
   const path = usePathname();
   console.log(path);
-
   return (
     <section>
       <ul className="items-center flex">
