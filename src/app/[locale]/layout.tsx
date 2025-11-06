@@ -10,6 +10,7 @@ import { getDirection, getFont } from "@/src/utils/direction";
 import { AuthProvider } from "@/src/components/providers/auth-provider";
 import { Metadata } from "next";
 import { generateDefaultMetadata, generateJsonLd } from "@/src/utils/metadata";
+import { LocaleProvider } from "@/src/components/localProvider";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -42,7 +43,8 @@ export default async function RootLayout({
   const messages = await getMessages({ locale });
   const direction = getDirection(locale);
   const font = getFont(locale);
-
+   
+  console.log(messages)
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <head>
@@ -55,7 +57,7 @@ export default async function RootLayout({
 
       <body className={font}>
         <AuthProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
+          <LocaleProvider messages={messages} locale={locale}>
             <main className=" overflow-hidden">
               <Header />
               {children}
@@ -63,7 +65,7 @@ export default async function RootLayout({
             <footer className="bg-black">
               <Footer />
             </footer>
-          </NextIntlClientProvider>
+          </LocaleProvider>
         </AuthProvider>
       </body>
     </html>
