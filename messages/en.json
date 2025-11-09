@@ -12,7 +12,6 @@
   "metadata": {
     "title": "PriceLess Med",
     "description": "Your trusted partner for affordable healthcare services in the UAE.",
-
     "home": {
       "title": "Home",
       "description": "Access affordable medical checkups, specialist care, and hospital services in UAE."
@@ -62,7 +61,6 @@
       }
     }
   },
-
   "home": {
     "hero": {
       "title": "Say goodbye to costly healthcare",
@@ -159,6 +157,31 @@
       "title": "Explore dubai marina",
       "subtitle": "Clinics & hospitals around you",
       "loadingLocation": "Loading location..."
+    }
+  },
+  "about": {
+    "vision": "our vision",
+    "mainHeader": "We are building the future of healthcare",
+    "subHeader": "We have 1,000+ healthcare providers across the UAE who are attracting new patients, filling appointments, and building loyalty through PricelessMed.",
+    "build": "We are building the future of healthcare",
+    "image1Title": "Our Commitment",
+    "image2Title": "Simplifying Your Healthcare Journey",
+    "image1Desc": "We understand the challenges healthcare providers face in today’s dynamic landscape—ranging from rising costs to increasing demands for affordability and efficiency. That’s why we collaborate with trusted providers to create tailored solutions that meet patients’ needs while supporting providers in achieving sustainable growth.",
+    "image2Desc": "With PricelessMed, managing your health is easier and more affordable than ever. Whether you’re seeking routine care, advanced treatments, or specialized services, our platform offers tailored vouchers to suit your needs. Every voucher represents significant savings and peace of mind for you and your loved ones.",
+    "teamTitle": "MEET THE TEAM",
+    "teamHeader": "Built by world-class medical professionals",
+    "chief": "PricelessMed Chief Longevity Officer, Harvard MD & MBA",
+    "manging": "Managing Director and Co-Founder",
+    "coFounder": "Co-Founder",
+    "admin": "Admin and BD Business Partner",
+    "BSD": "Business Development",
+    "Designer": "Designer & Conent Creator",
+    "cooprate": "Corporate Business Development",
+    "BD": "Business Development",
+    "news": {
+      "title": "Latest updates",
+      "subtitle": "Newsroom",
+      "button": "View archive"
     }
   }
 }

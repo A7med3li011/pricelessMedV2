@@ -16,7 +16,7 @@ export default function Links({ light = false }: LinksProps) {
     { title: t("contact"), referance: "/contact-us" },
   ];
   const path = usePathname();
-  console.log(path);
+
   return (
     <section>
       <ul className="items-center flex">
