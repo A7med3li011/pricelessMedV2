@@ -43,7 +43,9 @@ export default async function aboutPage({
           <Team t={t} />
         </AnimatedSection>
       </section>
-      <NewsLayout t={t} />
+      <section className=" bg-gradient">
+        <NewsLayout t={t} />
+      </section>
     </section>
   );
 }
