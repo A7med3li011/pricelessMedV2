@@ -44,7 +44,6 @@ export default async function RootLayout({
   const direction = getDirection(locale);
   const font = getFont(locale);
 
-  console.log(messages);
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <head>
