@@ -138,9 +138,8 @@ export default function Header() {
               src={logo}
               width={201}
               height={39}
-              alt="PricelessMed Logo"
+              alt="pricelessMedd"
               priority
-              className="h-auto w-auto max-w-[150px] md:max-w-[201px]"
             />
           </Link>
 

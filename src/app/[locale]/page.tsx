@@ -31,7 +31,6 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "sexxxx" });
 
   return (
     <section className="">
@@ -76,10 +75,9 @@ export default async function Home({
       <div className="bg-amber-300">
         <LanguageButton />
       </div>
-      {t("title")}
       <HomeSearch />
       <Works />
-      <BannerLayout />
+      <BannerLayout /> 
       <ServiceGrid />
       <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
         <Tags />
