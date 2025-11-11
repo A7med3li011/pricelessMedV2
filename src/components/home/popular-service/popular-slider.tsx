@@ -5,17 +5,22 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 interface PopularSliderProps {
   data: PopularService[];
 }
 
 export default function PopularSlider({ data }: PopularSliderProps) {
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "start",
       slidesToScroll: 1,
+      direction: isRTL ? 'rtl' : 'ltr'
     },
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
@@ -132,7 +137,7 @@ export default function PopularSlider({ data }: PopularSliderProps) {
         </div>
 
         {/* Custom Navigation and Pagination */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 w-1/3 md:w-2/12 me-auto px-4 ">
+        <div className={`flex items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 w-1/3 md:w-2/12 px-4 ${isRTL ? 'ms-auto' : 'me-auto'}`}>
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
@@ -150,7 +155,7 @@ export default function PopularSlider({ data }: PopularSliderProps) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
+                d={isRTL ? "M8.25 4.5l7.5 7.5-7.5 7.5" : "M15.75 19.5L8.25 12l7.5-7.5"}
               />
             </svg>
           </button>
@@ -187,7 +192,7 @@ export default function PopularSlider({ data }: PopularSliderProps) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                d={isRTL ? "M15.75 19.5L8.25 12l7.5-7.5" : "M8.25 4.5l7.5 7.5-7.5 7.5"}
               />
             </svg>
           </button>

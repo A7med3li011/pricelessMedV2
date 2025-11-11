@@ -3,8 +3,10 @@ import { Hospital, MapPin, Search } from "lucide-react";
 import CustomButton from "../ui/customButton";
 import { useEffect, useState } from "react";
 import SearchHomeFacility from "@/src/app/actions/search.action";
+import { useTranslations } from "next-intl";
 
 export default function HomeSearch() {
+  const t = useTranslations("home");
   const [switcher, setSwitcher] = useState("hospital");
   const [facilityText, setFacilityText] = useState("");
   const [data, setData] = useState([]);
@@ -29,13 +31,13 @@ export default function HomeSearch() {
           <span>
             <Search />
           </span>
-          <span>Search treatment or services</span>
+          <span>{t("homeSearch.searchTreatment")}</span>
         </section>
         <section className="flex items-center py-3 px-5 gap-x-3 border-b-[1px] md:border-b-0 lg:border-e-[1px] border-[#DDDDDD]">
           <span>
             <MapPin />
           </span>
-          <span>Select location</span>
+          <span>{t("homeSearch.selectLocation")}</span>
         </section>
         <section className="flex items-center py-3 px-5 gap-x-3 border-b-[1px] md:border-e-[1px] lg:border-b-0 lg:border-e-[1px] border-[#DDDDDD] relative">
           <span>
@@ -45,7 +47,7 @@ export default function HomeSearch() {
             type="text"
             value={facilityText}
             onChange={(e) => setFacilityText(e.target.value)}
-            placeholder="Select hospital or clinic"
+            placeholder={t("homeSearch.selectHospital")}
             className="py-1 focus:outline-none"
           />
           {facilityText ? (
@@ -57,7 +59,7 @@ export default function HomeSearch() {
                     switcher === "hospital" ? "bg-white" : "text-[#717678]"
                   }`}
                 >
-                  Hospital
+                  {t("homeSearch.hospital")}
                 </button>
                 <button
                   onClick={() => setSwitcher("clinic")}
@@ -65,7 +67,7 @@ export default function HomeSearch() {
                     switcher === "clinic" ? "bg-white" : "text-[#717678]"
                   }`}
                 >
-                  Clinic
+                  {t("homeSearch.clinic")}
                 </button>
               </section>
               <ul className="py-4 w-4/5 mx-auto">
@@ -92,7 +94,7 @@ export default function HomeSearch() {
         </section>
         <section className="flex items-center justify-center md:col-span-2 lg:col-span-1 py-3">
           <CustomButton
-            text="search"
+            text={t("homeSearch.search")}
             style="bg-[#13ACFC] py-3 px-5 rounded-full cursor-pointer text-white w-full md:w-auto"
           />
         </section>

@@ -3,18 +3,19 @@ import HeadTitle from "../../ui/head-title";
 import MainHeader from "../../ui/main-header";
 import NewsContent from "./news-content";
 import CustomButton from "../../ui/customButton";
+import NewsSkeleton from "./news-skeleton";
 
-export default function NewsLayout() {
+export default function NewsLayout({ t }: { t: (key: string) => string }) {
   return (
     <section className="container py-15 my-10">
-      <HeadTitle title={`Latest updates`} />
-      <MainHeader text="Newsroom" />
+      <HeadTitle title={t("news.title")} />
+      <MainHeader text={t("news.subtitle")} />
 
-      <Suspense fallback={<div>loading </div>}>
+      <Suspense fallback={<NewsSkeleton />}>
         <NewsContent />
       </Suspense>
       <CustomButton
-        text={`View archive`}
+        text={t("news.button")}
         style={`text-[#13ACFC] py-2  px-3  my-7 border-[1px] border-[#13ACFC] rounded-full text-sm block mx-auto w-fit`}
       />
     </section>

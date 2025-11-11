@@ -1,6 +1,6 @@
 {
-  "common":{
-    "loginSignup":"Login or Sign up"
+  "common": {
+    "loginSignup": "Login or Sign up"
   },
   "menu": {
     "service": "Service",
@@ -10,59 +10,178 @@
     "contact": "Contact"
   },
   "metadata": {
-      "title": "PriceLess Med",
-      "description": "Your trusted partner for affordable healthcare services in the UAE.", 
-
-      "home": {
-        "title": "Home",
-        "description": "Access affordable medical checkups, specialist care, and hospital services in UAE."
-      },
-      "services": {
-        "title": "Our Services",
-        "description": "Explore the range of medical and healthcare services offered by PriceLess Med."
-      },
-      "hospitals": {
-        "title": "Partner Hospitals",
-        "description": "Find a list of accredited hospitals and medical centers in our network."
-      },
-      "partners": {
-        "title": "Our Partners",
-        "description": "Meet our trusted partners and collaborators in the healthcare sector."
-      },
-      "blog": {
-        "title": "Health Blog",
-        "description": "Read the latest articles and insights on health, wellness, and medical news."
-      },
-      "news": {
-        "title": "Latest News",
-        "description": "Official announcements and updates from PriceLess Med."
-      },
-      "faq": {
-        "title": "FAQ",
-        "description": "Find answers to frequently asked questions about our memberships and services."
-      },
-      "about": {
-        "title": "About Us",
-        "description": "Learn more about our mission, vision, and commitment to affordable healthcare."
-      },
-      "contact": {
-        "title": "Contact Us",
-        "description": "Get in touch with our support team or send us your inquiries."
-      },
-      "businessData": {
-        "name": "PriceLess Med",
-        "description": "Save over AED 3,000 annually...",
-        "telephone": "+971-XXX-XXXX",
-        "specialties": [
-          "GeneralPractice",
-          "Cardiology"
-        ]
-      },
-      "seo": {
-        "aggregateRating": {
-          "ratingValue": "4.8",
-          "reviewCount": "1250"
-        }
+    "title": "PriceLess Med",
+    "description": "Your trusted partner for affordable healthcare services in the UAE.",
+    "home": {
+      "title": "Home",
+      "description": "Access affordable medical checkups, specialist care, and hospital services in UAE."
+    },
+    "services": {
+      "title": "Our Services",
+      "description": "Explore the range of medical and healthcare services offered by PriceLess Med."
+    },
+    "hospitals": {
+      "title": "Partner Hospitals",
+      "description": "Find a list of accredited hospitals and medical centers in our network."
+    },
+    "partners": {
+      "title": "Our Partners",
+      "description": "Meet our trusted partners and collaborators in the healthcare sector."
+    },
+    "blog": {
+      "title": "Health Blog",
+      "description": "Read the latest articles and insights on health, wellness, and medical news."
+    },
+    "news": {
+      "title": "Latest News",
+      "description": "Official announcements and updates from PriceLess Med."
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Find answers to frequently asked questions about our memberships and services."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Learn more about our mission, vision, and commitment to affordable healthcare."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with our support team or send us your inquiries."
+    },
+    "businessData": {
+      "name": "PriceLess Med",
+      "description": "Save over AED 3,000 annually...",
+      "telephone": "+971-XXX-XXXX",
+      "specialties": ["GeneralPractice", "Cardiology"]
+    },
+    "seo": {
+      "aggregateRating": {
+        "ratingValue": "4.8",
+        "reviewCount": "1250"
       }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Say goodbye to costly healthcare",
+      "description": "Save AED 3,000+ annually on everything from checkups to specialist care.",
+      "joinToday": "Join today",
+      "browseServices": "Browse services"
+    },
+    "works": {
+      "badge": "How It Work",
+      "header": "Your path to affordable healthcare",
+      "steps_one": {
+        "title": "Find your perfect deal",
+        "description": "Explore hundreds of deals across dentistry, diagnostics, specialists, and wellness services at top-rated clinics."
+      },
+      "steps_two": {
+        "title": "Connect with your clinic",
+        "description": "View clinic details, location, and contact information. Reach out directly to book your appointment at a time that works for you."
+      },
+      "steps_three": {
+        "title": "Show up & save",
+        "description": "Present your PricelessMed voucher at the clinic and enjoy savings of up to 70% on quality healthcare."
+      }
+    },
+    "banner": {
+      "title": "Special deals"
+    },
+    "services": {
+      "healthcare": {
+        "title": "Healthcare discounts",
+        "desc": "Access exclusive vouchers and deals from top clinics across the UAE."
+      },
+      "surgical": {
+        "title": "Surgical quotation",
+        "desc": "Get personalized quotes from leading hospitals based on your needs."
+      },
+      "emergency": {
+        "title": "Emergency care",
+        "desc": "Access to emergency rooms and urgent care facilities across the UAE."
+      },
+      "contact": "contact us"
+    },
+    "tags": {
+      "subtitle": "FOR EVERY NEED",
+      "line1": "Comprehensive care from",
+      "line2": "checkups to specialized treatment"
+    },
+    "partner": {
+      "title": "Most trusted hospitals",
+      "subtitle": "Discover our network of trusted hospital partners"
+    },
+    "popular": {
+      "title": "BEST DEALS",
+      "subtitle": "Popular healthcare services"
+    },
+    "hospital": {
+      "title": "Healthcare Facilities",
+      "subtitle": "New hospitals & clinics"
+    },
+    "blogs": {
+      "title": "Tips & Insights",
+      "subtitle": "Health Hub"
+    },
+    "news": {
+      "title": "Latest updates",
+      "subtitle": "Newsroom",
+      "button": "View archive"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about saving on healthcare",
+      "moreQuestions": "Have more questions?",
+      "contact": "Contact us"
+    },
+    "savingHome": {
+      "title": "DOWNLOAD OUR APP",
+      "heading": "Save on healthcare wherever you are",
+      "description": "Discover discounted health services, manage your vouchers, and locate nearby participating providers. Download the app and start saving on your healthcare today."
+    },
+    "contactSales": {
+      "title": "ARE YOU A HOSPITAL OR A CLINIC?",
+      "subtitle": "Join our growing network",
+      "description": "We have 1,000+ healthcare providers across the UAE who are attracting new patients, filling appointments, and building loyalty through PricelessMed.",
+      "button": "Contact sales team"
+    },
+    "homeSearch": {
+      "searchTreatment": "Search treatment or services",
+      "selectLocation": "Select location",
+      "selectHospital": "Select hospital or clinic",
+      "hospital": "Hospital",
+      "clinic": "Clinic",
+      "search": "search"
+    },
+    "map": {
+      "title": "Explore dubai marina",
+      "subtitle": "Clinics & hospitals around you",
+      "loadingLocation": "Loading location..."
+    }
+  },
+  "about": {
+    "vision": "our vision",
+    "mainHeader": "We are building the future of healthcare",
+    "subHeader": "We have 1,000+ healthcare providers across the UAE who are attracting new patients, filling appointments, and building loyalty through PricelessMed.",
+    "build": "We are building the future of healthcare",
+    "image1Title": "Our Commitment",
+    "image2Title": "Simplifying Your Healthcare Journey",
+    "image1Desc": "We understand the challenges healthcare providers face in today’s dynamic landscape—ranging from rising costs to increasing demands for affordability and efficiency. That’s why we collaborate with trusted providers to create tailored solutions that meet patients’ needs while supporting providers in achieving sustainable growth.",
+    "image2Desc": "With PricelessMed, managing your health is easier and more affordable than ever. Whether you’re seeking routine care, advanced treatments, or specialized services, our platform offers tailored vouchers to suit your needs. Every voucher represents significant savings and peace of mind for you and your loved ones.",
+    "teamTitle": "MEET THE TEAM",
+    "teamHeader": "Built by world-class medical professionals",
+    "chief": "PricelessMed Chief Longevity Officer, Harvard MD & MBA",
+    "manging": "Managing Director and Co-Founder",
+    "coFounder": "Co-Founder",
+    "admin": "Admin and BD Business Partner",
+    "BSD": "Business Development",
+    "Designer": "Designer & Conent Creator",
+    "cooprate": "Corporate Business Development",
+    "BD": "Business Development",
+    "news": {
+      "title": "Latest updates",
+      "subtitle": "Newsroom",
+      "button": "View archive"
+    }
   }
 }

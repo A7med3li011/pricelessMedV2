@@ -3,26 +3,27 @@ import emb from "../../../../public/assets/home/emb.svg";
 import man from "../../../../public/assets/home/man.svg";
 import oldMan from "../../../../public/assets/home/oldman.svg";
 import CustomButton from "../../ui/customButton";
-
-const data = [
-  {
-    image: oldMan,
-    title: "Healthcare discounts",
-    desc: "Access exclusive vouchers and deals from top clinics across the UAE.",
-  },
-  {
-    image: man,
-    title: "Surgical quotation",
-    desc: "Get personalized quotes from leading hospitals based on your needs.",
-  },
-  {
-    image: emb,
-    title: "Emergency care",
-    desc: "Access to emergency rooms and urgent care facilities across the UAE.",
-  },
-];
-
-export default function ServiceGrid() {
+type ServiceGridProps = {
+  t: (key: string, values?: Record<string, any>) => string;
+};
+export default function ServiceGrid({ t }: ServiceGridProps) {
+  const data = [
+    {
+      image: oldMan,
+      title: t("services.healthcare.title"),
+      desc: t("services.healthcare.desc"),
+    },
+    {
+      image: man,
+      title: t("services.surgical.title"),
+      desc: t("services.surgical.desc"),
+    },
+    {
+      image: emb,
+      title: t("services.emergency.title"),
+      desc: t("services.emergency.desc"),
+    },
+  ];
   return (
     <section className="container py-12 md:py-16 lg:py-20">
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 px-4 md:px-8 lg:px-16">
@@ -47,7 +48,7 @@ export default function ServiceGrid() {
                 {ele.desc}
               </p>
               <CustomButton
-                text={`Contact us`}
+                text={t("services.contact")}
                 style={`text-[#13ACFC] py-2  px-3  my-7 border-[1px] border-[#13ACFC] rounded-full text-sm`}
               />
             </section>

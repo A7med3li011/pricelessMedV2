@@ -125,15 +125,11 @@ export default function Header() {
   }, [isAuthOpen, closeAuthPopup]);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-      <div className="container mx-auto px-4">
+    <header className="bg-white mb-2">
+      <div className="container mx-auto ">
         <div className="flex items-center justify-between py-3 gap-4">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
-            aria-label="Go to homepage"
-          >
+          <Link href="/">
             <Image
               src={logo}
               width={201}
