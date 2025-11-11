@@ -31,7 +31,7 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
+ const t = await getTranslations({ locale, namespace: "home" });
   return (
     <section className="">
       <section className="relative h-screen  md:rounded-md overflow-hidden sm:container ">
