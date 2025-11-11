@@ -31,7 +31,7 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
- const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale, namespace: "home" });
   return (
     <section className="">
       <section className="relative h-screen  md:rounded-md overflow-hidden sm:container ">
@@ -67,15 +67,12 @@ export default async function Home({
             </Link>
           </section>
         </section>
-      </section> 
-      
-      <div className="bg-amber-300">
-        <LanguageButton />
-      </div>
+      </section>
+
       <HomeSearch />
-      <Works />
-      <BannerLayout /> 
-      <ServiceGrid />
+      <Works t={t} />
+      <BannerLayout t={t} />
+      <ServiceGrid t={t} />
 
       <HomeSearch />
       <Works t={t} />
