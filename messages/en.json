@@ -91,7 +91,10 @@
       "name": "PriceLess Med",
       "description": "Save over AED 3,000 annually...",
       "telephone": "+971-XXX-XXXX",
-      "specialties": ["GeneralPractice", "Cardiology"]
+      "specialties": ["GeneralPractice", "Cardiology"],
+      "address": {
+        "region": "Dubai"
+      }
     },
     "seo": {
       "aggregateRating": {
