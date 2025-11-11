@@ -9,6 +9,45 @@
     "about": "About",
     "contact": "Contact"
   },
+  "contact": {
+    "title": "Frequently Asked Questions",
+    "description": "Everything you need to know about saving on healthcare ",
+    "description2": "Our team is happy to answer your questions",
+    "description3": "Fill out the form below and a representative will reach out.",
+    "subtitle": "Get in touch ",
+    "faq": {
+      "error": "Failed to load FAQs",
+      "errorMessage": "An unexpected error occurred. Please try again later.",
+      "noData": "No FAQs available at the moment."
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "message": "Message",
+      "messagePlaceholder": "Can you share more about your needs or challenges?",
+      "sending": "Sending...",
+      "getInTouch": "Get in touch",
+      "firstNameRequired": "First name is required",
+      "firstNameMin": "First name must be at least 3 characters",
+      "firstNameMax": "First name must be at most 30 characters",
+      "firstNameRegex": "First name can only contain letters",
+      "lastNameRequired": "Last name is required",
+      "lastNameMin": "Last name must be at least 3 characters",
+      "lastNameMax": "Last name must be at most 30 characters",
+      "lastNameRegex": "Last name can only contain letters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "phoneNumberRequired": "Phone number is required",
+      "phoneNumberInvalid": "Please enter a valid phone number",
+      "messageRequired": "Message is required",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message must be at most 300 characters",
+      "successMessage": "Thank you! Your message has been sent successfully.",
+      "errorMessage": "Oops! Something went wrong. Please try again or contact us directly."
+    }
+  },
   "metadata": {
     "title": "PriceLess Med",
     "description": "Your trusted partner for affordable healthcare services in the UAE.",

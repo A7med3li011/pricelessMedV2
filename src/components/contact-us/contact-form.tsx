@@ -11,45 +11,48 @@ import { useState } from "react";
 import { parsingMobile } from "@/src/utils/parsePhoneNumber";
 import contactusAction from "@/src/app/actions/client.action";
 import toast from "react-hot-toast";
-
-const schema = z.object({
-  first_name: z
-    .string()
-    .nonempty("First name is required")
-    .min(3, "First name must be at least 3 characters")
-    .max(30, "First name must be at most 30 characters")
-    .regex(/^[a-zA-Z\s]+$/, "First name can only contain letters"),
-
-  last_name: z
-    .string()
-    .nonempty("Last name is required")
-    .min(3, "Last name must be at least 3 characters")
-    .max(30, "Last name must be at most 30 characters")
-    .regex(/^[a-zA-Z\s]+$/, "Last name can only contain letters"),
-
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Please enter a valid email address")
-    .toLowerCase(),
-
-  mobile: z
-    .string()
-    .nonempty("Phone number is required")
-    .refine((value) => isValidPhoneNumber(value || ""), {
-      message: "Please enter a valid phone number",
-    }),
-
-  message: z
-    .string()
-    .nonempty("Message is required")
-    .min(10, "Message must be at least 10 characters")
-    .max(300, "Message must be at most 300 characters"),
-});
-
-type FormData = z.infer<typeof schema>;
+import { useTranslations, useLocale } from "next-intl";
 
 export default function ContactForm() {
+  const t = useTranslations("contact");
+  const locale = useLocale();
+
+  type FormData = z.infer<typeof schema>;
+  const schema = z.object({
+    first_name: z
+      .string()
+      .nonempty(t("form.firstNameRequired"))
+      .min(3, t("form.firstNameMin"))
+      .max(30, t("form.firstNameMax"))
+      .regex(/^[a-zA-Z\s]+$/, t("form.firstNameRegex")),
+
+    last_name: z
+      .string()
+      .nonempty(t("form.lastNameRequired"))
+      .min(3, t("form.lastNameMin"))
+      .max(30, t("form.lastNameMax"))
+      .regex(/^[a-zA-Z\s]+$/, t("form.lastNameRegex")),
+
+    email: z
+      .string()
+      .nonempty(t("form.emailRequired"))
+      .email(t("form.emailInvalid"))
+      .toLowerCase(),
+
+    mobile: z
+      .string()
+      .nonempty(t("form.phoneNumberRequired"))
+      .refine((value) => isValidPhoneNumber(value || ""), {
+        message: t("form.phoneNumberInvalid"),
+      }),
+
+    message: z
+      .string()
+      .nonempty(t("form.messageRequired"))
+      .min(10, t("form.messageMin"))
+      .max(300, t("form.messageMax")),
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -69,7 +72,6 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-   
 
     try {
       const formData = new FormData();
@@ -90,28 +92,24 @@ export default function ContactForm() {
         // Success
         setSubmitStatus({
           type: "success",
-          message: "Thank you! Your message has been sent successfully.",
+          message: t("form.successMessage"),
         });
-        toast.success("Thank you! Your message has been sent successfully.")
+        toast.success(t("form.successMessage"));
         reset(); // Reset form after successful submission
 
         // Clear success message after 5 seconds
-       
       } else {
         // Error from API
         setSubmitStatus({
           type: "error",
-          message:
-            res.error?.message ||
-            "Oops! Something went wrong. Please try again or contact us directly.",
+          message: res.error?.message || t("form.errorMessage"),
         });
       }
     } catch (error) {
       // Unexpected error
       setSubmitStatus({
         type: "error",
-        message:
-          "Oops! Something went wrong. Please try again or contact us directly.",
+        message: t("form.errorMessage"),
       });
       console.error("Form submission error:", error);
     } finally {
@@ -130,7 +128,7 @@ export default function ContactForm() {
             type="text"
             {...register("first_name")}
             className="border-[1px] focus:outline-none  border-[#DDDDDD] py-3 px-2  rounded-lg w-full"
-            placeholder="First name"
+            placeholder={t("form.firstName")}
           />
           {errors.first_name && (
             <p className="text-red-500 text-xs mt-1 text-left">
@@ -143,7 +141,7 @@ export default function ContactForm() {
             type="text"
             {...register("last_name")}
             className="border-[1px] focus:outline-none  border-[#DDDDDD] py-3 px-2  rounded-lg w-full"
-            placeholder="Last name"
+            placeholder={t("form.lastName")}
           />
           {errors.last_name && (
             <p className="text-red-500 text-xs mt-1 text-left">
@@ -158,7 +156,7 @@ export default function ContactForm() {
             type="text"
             {...register("email")}
             className="border-[1px] focus:outline-none  border-[#DDDDDD] py-3 px-2  rounded-lg w-full"
-            placeholder="Email address"
+            placeholder={t("form.email")}
           />
           {errors.email && (
             <p className="text-red-500 text-xs mt-1 text-left">
@@ -180,7 +178,8 @@ export default function ContactForm() {
                   onChange={onChange}
                   flags={flags}
                   className="phone-input-custom"
-                  placeholder="Phone number"
+                  placeholder={t("form.phone")}
+                  dir={locale === "ar" ? "rtl" : "ltr"}
                 />
               </div>
             )}
@@ -195,7 +194,7 @@ export default function ContactForm() {
       <section>
         <textarea
           {...register("message")}
-          placeholder="Can you share more about your needs or challenges?"
+          placeholder={t("form.messagePlaceholder")}
           className="border-[1px] focus:outline-none  border-[#DDDDDD] py-3 px-2  rounded-lg w-full"
           rows={10}
         ></textarea>
@@ -208,10 +207,9 @@ export default function ContactForm() {
 
       {/* Status Messages */}
 
-
       <CustomButton
         type="submit"
-        text={isSubmitting ? "Sending..." : "Get in touch"}
+        text={isSubmitting ? t("form.sending") : t("form.getInTouch")}
         style={`bg-[#8A44D9] text-white py-2 px-3 text-sm mt-5 rounded-full ${
           isSubmitting ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
         }`}
