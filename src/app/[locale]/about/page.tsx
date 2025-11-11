@@ -36,9 +36,12 @@ export default async function aboutPage({
             />
           </section>
         </AnimatedSection>
+
         <AnimatedSection animation="fade">
           <Building t={t} />
         </AnimatedSection>
+
+        
         <AnimatedSection animation="scale">
           <Team t={t} />
         </AnimatedSection>
