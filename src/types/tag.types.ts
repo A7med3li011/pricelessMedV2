@@ -73,6 +73,13 @@ export interface Partner {
   description?: string;
 }
 
+export interface PaginationInfo {
+  currentPage: number;
+  totalPages: number;
+  totalRecords: number;
+  pageLimit?: number;
+}
+
 export interface ApiResponse<T> {
   data: T | null;
   success: boolean;
@@ -80,4 +87,5 @@ export interface ApiResponse<T> {
     message: string;
     status: number;
   } | null;
+  pagination?: PaginationInfo;
 }

@@ -225,5 +225,12 @@
       "subtitle": "Newsroom",
       "button": "View archive"
     }
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "pageNumber": "Page {page}",
+    "ariaLabel": "Pagination navigation",
+    "loading": "Loading..."
   }
 }

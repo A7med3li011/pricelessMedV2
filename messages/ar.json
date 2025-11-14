@@ -227,5 +227,12 @@
       "subtitle": "غرفة الأخبار",
       "button": "عرض الأرشيف"
     }
+  },
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "pageNumber": "صفحة {page}",
+    "ariaLabel": "التنقل بين الصفحات",
+    "loading": "جاري التحميل..."
   }
 }

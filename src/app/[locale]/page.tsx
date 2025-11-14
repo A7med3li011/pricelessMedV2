@@ -74,10 +74,7 @@ export default async function Home({
       <BannerLayout t={t} />
       <ServiceGrid t={t} />
 
-      <HomeSearch />
-      <Works t={t} />
-      <BannerLayout t={t} />
-      <ServiceGrid t={t} />
+
       <Suspense fallback={<div className="py-20 my-10 bg-gradient" />}>
         <Tags t={t} />
       </Suspense>
