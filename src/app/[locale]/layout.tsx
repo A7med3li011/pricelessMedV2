@@ -10,7 +10,7 @@ import { getDirection, getFont } from "@/src/utils/direction";
 import { AuthProvider } from "@/src/components/providers/auth-provider";
 import { Metadata } from "next";
 import { generateDefaultMetadata, generateJsonLd } from "@/src/utils/metadata";
-import { LocaleProvider } from "@/src/components/localProvider";
+import { LocaleProvider } from "@/src/components/providers/localProvider";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -57,11 +57,11 @@ export default async function RootLayout({
       <body className={font}>
         <AuthProvider>
           <LocaleProvider messages={messages} locale={locale}>
-            <main className=" ">
+            <main className="bg-white  text-black">
               <Header />
               {children}
             </main>
-            <footer className="bg-black">
+            <footer className="bg-black text-white">
               <Footer />
             </footer>
           </LocaleProvider>

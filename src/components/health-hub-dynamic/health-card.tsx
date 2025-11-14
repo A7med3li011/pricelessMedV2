@@ -15,7 +15,7 @@ interface HealthCardProps {
 
 export default function HealthCard({ data }: HealthCardProps) {
   return (
-    <Link href={data.slug}>
+    <Link href={"/"}>
       <motion.section
         className=" cursor-pointer"
         whileHover={{ y: -8, scale: 1.02 }}

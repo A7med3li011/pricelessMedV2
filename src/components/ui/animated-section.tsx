@@ -1,6 +1,6 @@
 "use client";
 import { motion, Variants } from "framer-motion";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export type AnimationType =
   | "fade"
@@ -124,7 +124,7 @@ export default function AnimatedSection({
   viewport = { once: true, amount: 0.3 },
   as = "div",
 }: AnimatedSectionProps) {
-  const Component = motion[as] as any;
+  const Component = motion[as] as React.ElementType;
 
   const variants = { ...animationVariants[animation] };
 

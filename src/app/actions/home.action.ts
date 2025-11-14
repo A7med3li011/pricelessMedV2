@@ -308,6 +308,52 @@ export async function getBlogs(lang: string): Promise<ApiResponse<Blog[]>> {
     };
   }
 }
+export async function getBlogsDynamic(
+  lang: string,
+  page: number,
+  pageLimit: number
+): Promise<ApiResponse<Blog[]>> {
+  "use server";
+  console.log(new Date(), lang, "blogs", page, pageLimit);
+
+  try {
+    const response = await fetch(
+      `https://pricelessmed.com/api/website/blogs?lang=${lang}&page=${page}&pageLimit=${pageLimit}`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      return {
+        data: null,
+        success: false,
+        error: {
+          message: `Failed to fetch blogs: ${response.statusText}`,
+          status: response.status,
+        },
+      };
+    }
+
+    const result = await response.json();
+
+    return {
+      data: result.data || [],
+      pagination: result.pagination,
+      success: true,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      data: null,
+      success: false,
+      error: {
+        message:
+          err instanceof Error ? err.message : "An unknown error occurred",
+        status: 500,
+      },
+    };
+  }
+}
+
 export async function getPartners(
   lang: string
 ): Promise<ApiResponse<Partner[]>> {

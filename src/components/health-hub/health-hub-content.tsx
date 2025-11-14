@@ -1,6 +1,5 @@
 import getLang from "@/src/app/[locale]/helpers/getLang";
 import HealthGrid from "./health-grid";
-import { Suspense } from "react";
 
 export default async function HealthContent() {
   const lang = await getLang();
