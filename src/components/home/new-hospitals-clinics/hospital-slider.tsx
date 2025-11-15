@@ -5,6 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
+import placeHolder from "../../../../public/assets/place-holder.svg";
 
 interface PopularSliderProps {
   data: PopularService[];
@@ -13,6 +14,14 @@ interface PopularSliderProps {
 export default function HospitalSlider({ data }: PopularSliderProps) {
   const locale = useLocale();
   const isRTL = locale === "ar";
+
+  const [imageErrors, setImageErrors] = useState<Set<string | number>>(
+    new Set()
+  );
+
+  const handleImageError = (hospitalId: string | number) => {
+    setImageErrors((prev) => new Set(prev).add(hospitalId));
+  };
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -74,12 +83,17 @@ export default function HospitalSlider({ data }: PopularSliderProps) {
                   </span>
                   <section className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] overflow-hidden bg-gray-100">
                     <Image
-                      src={ele?.coverImage || ele?.imageUrl || ""}
+                      src={
+                        imageErrors.has(ele._id)
+                          ? placeHolder
+                          : ele?.coverImage || ele?.imageUrl || placeHolder
+                      }
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-cover hover:scale-105 transition-transform duration-300"
                       alt={ele?.organization || ele?.upperText || "Hospital"}
                       priority={index < 4}
+                      onError={() => handleImageError(ele._id)}
                     />
                   </section>
                   <section className="px-3 sm:px-4 py-3 flex-1 flex flex-col">

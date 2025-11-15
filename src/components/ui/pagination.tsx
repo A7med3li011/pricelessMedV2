@@ -36,7 +36,7 @@ export default function Pagination({
 
   useEffect(() => {
     setPendinggg(isPending);
-    console.log(isPending, "from pagaination coponent");
+  
   }, [isPending, setPendinggg]);
 
   // Use currentPage or page as the active page

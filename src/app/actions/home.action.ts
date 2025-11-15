@@ -15,8 +15,6 @@ export async function getTags(lang: string): Promise<ApiResponse<Tag[]>> {
   cacheTag(`tags-${lang}`);
   cacheLife({ stale: 86400 }); // 1 hour cache lifetime
 
-  console.log(new Date(), lang);
-
   try {
     const response = await fetch(
       `https://pricelessmed.com/api/website/tags?lang=${lang}`
@@ -56,8 +54,6 @@ export async function getBanners(lang: string): Promise<ApiResponse<Banner[]>> {
   "use cache";
   cacheTag(`banner-${lang}`);
   cacheLife({ stale: 3600 }); // 1 hour cache lifetime
-
-  console.log(new Date(), lang, "banner");
 
   try {
     const response = await fetch(
@@ -101,8 +97,6 @@ export async function getPopularService(
   cacheTag(`popular-service-${lang}`);
   cacheLife({ stale: 3600 }); // 1 hour cache lifetime
 
-  console.log(new Date(), lang, "service");
-
   try {
     const response = await fetch(
       `https://pricelessmed.com/api/website/popular-offers?lang=${lang}`
@@ -145,8 +139,6 @@ export async function getHospitalService(
   cacheTag(`popular-service-${lang}`);
   cacheLife({ stale: 3600 }); // 1 hour cache lifetime
 
-  console.log(new Date(), lang, "service");
-
   try {
     const response = await fetch(
       `https://pricelessmed.com/api/website/new-facilities?lang=${lang}`
@@ -186,8 +178,6 @@ export async function getFAQ(lang: string): Promise<ApiResponse<FAQ[]>> {
   "use cache";
   cacheTag(`FAQ-service-${lang}`);
   cacheLife({ stale: 86400 }); // 24 hours cache lifetime
-
-  console.log(new Date(), lang, "FAQ");
 
   try {
     const response = await fetch(
@@ -229,8 +219,6 @@ export async function LatestNews(lang: string): Promise<ApiResponse<News[]>> {
   cacheTag(`latest-news-${lang}`);
   cacheLife({ stale: 3600 }); // 24 hours cache lifetime
 
-  console.log(new Date(), lang, "News");
-
   try {
     const response = await fetch(
       `https://pricelessmed.com/api/website/latest-press?lang=${lang}`
@@ -270,8 +258,6 @@ export async function getBlogs(lang: string): Promise<ApiResponse<Blog[]>> {
   "use cache";
   cacheTag(`blogs-${lang}`);
   cacheLife({ stale: 3600 }); // 1 hour cache lifetime
-
-  console.log(new Date(), lang, "blogs");
 
   try {
     const response = await fetch(
@@ -314,11 +300,12 @@ export async function getBlogsDynamic(
   pageLimit: number
 ): Promise<ApiResponse<Blog[]>> {
   "use server";
-  console.log(new Date(), lang, "blogs", page, pageLimit);
 
   try {
     const response = await fetch(
-      `https://pricelessmed.com/api/website/blogs?lang=${lang}&page=${page}&pageLimit=${pageLimit}`,
+      `https://pricelessmed.com/api/website/blogs?lang=${lang}&page=${page}&pageLimit=${
+        pageLimit || 8
+      }`,
       { cache: "no-store" }
     );
 
@@ -353,6 +340,50 @@ export async function getBlogsDynamic(
     };
   }
 }
+export async function getNewsDynamic(
+  lang: string,
+  page: number,
+  pageLimit: number
+): Promise<ApiResponse<Blog[]>> {
+  "use server";
+
+  try {
+    const response = await fetch(
+      `https://pricelessmed.com/api/website/press?lang=${lang}&page=${page}&pageLimit=${pageLimit}`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      return {
+        data: null,
+        success: false,
+        error: {
+          message: `Failed to fetch press: ${response.statusText}`,
+          status: response.status,
+        },
+      };
+    }
+
+    const result = await response.json();
+
+    return {
+      data: result.data || [],
+      pagination: result.pagination,
+      success: true,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      data: null,
+      success: false,
+      error: {
+        message:
+          err instanceof Error ? err.message : "An unknown error occurred",
+        status: 500,
+      },
+    };
+  }
+}
 
 export async function getPartners(
   lang: string
@@ -360,8 +391,6 @@ export async function getPartners(
   "use cache";
   cacheTag(`partner-${lang}`);
   cacheLife({ stale: 3600 }); // 1 hour cache lifetime
-
-  console.log(new Date(), lang, "partner");
 
   try {
     const response = await fetch(

@@ -5,6 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
+import placeHolder from "../../../../public/assets/place-holder.svg";
 
 interface BlogsSliderProps {
   data: Blog[];
@@ -27,7 +28,7 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
       loop: true,
       align: "start",
       slidesToScroll: 1,
-      direction: isRTL ? 'rtl' : 'ltr'
+      direction: isRTL ? "rtl" : "ltr",
     },
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
@@ -73,7 +74,7 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
           <div className="flex gap-4 xs:gap-4 sm:gap-5 md:gap-6">
             {data.map((ele, index) => (
               <div
-                key={ index}
+                key={index}
                 className="flex-[0_0_100%] xs:flex-[0_0_calc(66.666%-11px)] sm:flex-[0_0_calc(50%-10px)] md:flex-[0_0_calc(40%-14px)] lg:flex-[0_0_calc(33.333%-16px)] xl:flex-[0_0_calc(25%-18px)] min-w-0 mx-3"
               >
                 <section className="rounded-lg bg-white overflow-hidden relative shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
@@ -81,37 +82,19 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
                     new
                   </span> */}
                   <section className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] overflow-hidden bg-gray-100">
-                    {imageErrors.has(ele.id) ? (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-100 to-purple-50">
-                        <div className="text-center p-4">
-                          <svg
-                            className="w-12 h-12 mx-auto text-purple-300 mb-2"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                          <p className="text-xs text-purple-400">Blog Image</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <Image
-                        src={ele?.imageUrl || "/placeholder-blog.jpg"}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        alt={ele?.title || "Blog"}
-                        priority={index < 4}
-                        onError={() => handleImageError(ele.id)}
-                        unoptimized={!ele?.imageUrl}
-                      />
-                    )}
+                    <Image
+                      src={
+                        imageErrors.has(ele._id)
+                          ? placeHolder
+                          : ele?.imageUrl || placeHolder
+                      }
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover hover:scale-105 transition-transform duration-300"
+                      alt={ele?.title || "Blog"}
+                      priority={index < 4}
+                      onError={() => handleImageError(ele._id)}
+                    />
                   </section>
                   <section className="px-3 sm:px-4 py-3 flex-1 flex flex-col">
                     <section className="text-sm gap-1 pb-5">
@@ -143,7 +126,11 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
         </div>
 
         {/* Custom Navigation and Pagination */}
-        <div className={`flex items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 w-1/3 md:w-2/12 px-4 ${isRTL ? 'ms-auto' : 'me-auto'}`}>
+        <div
+          className={`flex items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 w-1/3 md:w-2/12 px-4 ${
+            isRTL ? "ms-auto" : "me-auto"
+          }`}
+        >
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
@@ -161,7 +148,11 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d={isRTL ? "M8.25 4.5l7.5 7.5-7.5 7.5" : "M15.75 19.5L8.25 12l7.5-7.5"}
+                d={
+                  isRTL
+                    ? "M8.25 4.5l7.5 7.5-7.5 7.5"
+                    : "M15.75 19.5L8.25 12l7.5-7.5"
+                }
               />
             </svg>
           </button>
@@ -198,7 +189,11 @@ export default function BlogsSlider({ data }: BlogsSliderProps) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d={isRTL ? "M15.75 19.5L8.25 12l7.5-7.5" : "M8.25 4.5l7.5 7.5-7.5 7.5"}
+                d={
+                  isRTL
+                    ? "M15.75 19.5L8.25 12l7.5-7.5"
+                    : "M8.25 4.5l7.5 7.5-7.5 7.5"
+                }
               />
             </svg>
           </button>

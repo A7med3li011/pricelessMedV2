@@ -168,7 +168,10 @@
     "news": {
       "title": "Latest updates",
       "subtitle": "Newsroom",
-      "button": "View archive"
+      "button": "View archive",
+      "pressRelease": "Press Release",
+      "error": "Something went wrong while loading news",
+      "noNews": "No news available"
     },
     "faq": {
       "title": "Frequently Asked Questions",
