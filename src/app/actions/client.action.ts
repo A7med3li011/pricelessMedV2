@@ -1,7 +1,6 @@
 "use server";
 
 export default async function contactusAction(data) {
-  console.log(data, "here");
   try {
     const response = await fetch(
       `https://pricelessmed.com/api/website/contact-us`,
@@ -12,7 +11,6 @@ export default async function contactusAction(data) {
     );
 
     const result = await response.json();
-    console.log("API Response:", result);
 
     if (!response.ok) {
       return {

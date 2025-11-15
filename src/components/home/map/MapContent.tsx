@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  GoogleMap,
-  Marker,
-  InfoWindow,
-  Circle,
-} from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow, Circle } from "@react-google-maps/api";
 import { useEffect, useState, useCallback } from "react";
 import { NearestService, NearestFacility } from "@/src/app/actions/map.action";
 import MapSlider from "./mapSlider";
@@ -130,12 +125,10 @@ export default function MapContent({ long, lat }: MapContentProps) {
 
   const handleSearch = () => {
     // TODO: Implement search functionality
-    console.log("Search clicked");
   };
 
   const handleSettings = () => {
     // TODO: Implement settings functionality
-    console.log("Settings clicked");
   };
 
   return (
@@ -185,121 +178,126 @@ export default function MapContent({ long, lat }: MapContentProps) {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-          {/* Purple circle border around selected facility */}
-          {selectedCoords && (
-            <Circle
-              center={selectedCoords}
-              radius={50}
-              options={{
-                strokeColor: "#8A44D9",
-                strokeOpacity: 1,
-                strokeWeight: 3,
-                fillColor: "#8A44D9",
-                fillOpacity: 0.1,
-              }}
-            />
-          )}
-
-          {/* User location marker (blue default marker) */}
-          <Marker
-            position={center}
-            title="Your Location"
-            onClick={() => setActiveMarker("user")}
+        {/* Purple circle border around selected facility */}
+        {selectedCoords && (
+          <Circle
+            center={selectedCoords}
+            radius={50}
+            options={{
+              strokeColor: "#8A44D9",
+              strokeOpacity: 1,
+              strokeWeight: 3,
+              fillColor: "#8A44D9",
+              fillOpacity: 0.1,
+            }}
           />
+        )}
 
-          {activeMarker === "user" && (
-            <InfoWindow
-              position={center}
-              onCloseClick={() => setActiveMarker(null)}
-            >
-              <div className="text-sm">
-                <strong>Your Location</strong>
-                <br />
-                {lat.toFixed(4)}, {long.toFixed(4)}
-              </div>
-            </InfoWindow>
-          )}
+        {/* User location marker (blue default marker) */}
+        <Marker
+          position={center}
+          title="Your Location"
+          onClick={() => setActiveMarker("user")}
+        />
 
-          {/* Facility markers */}
-          {filteredFacilities.map((facility) => {
-            const position = {
-              lat: facility.location.coordinates[1],
-              lng: facility.location.coordinates[0],
-            };
-            const isSelected = selectedFacilityId === facility._id;
+        {activeMarker === "user" && (
+          <InfoWindow
+            position={center}
+            onCloseClick={() => setActiveMarker(null)}
+          >
+            <div className="text-sm">
+              <strong>Your Location</strong>
+              <br />
+              {lat.toFixed(4)}, {long.toFixed(4)}
+            </div>
+          </InfoWindow>
+        )}
 
-            // Define icon configuration with proper Google Maps API classes
-            // Only create icon config if google.maps is available
-            let iconConfig;
-            if (typeof google !== 'undefined' && google.maps && google.maps.Size && google.maps.Point) {
-              iconConfig = isSelected
-                ? {
-                    url: SELECTED_PIN_SVG,
-                    scaledSize: new google.maps.Size(20, 48),
-                    anchor: new google.maps.Point(10, 48),
-                  }
-                : {
-                    url: `data:image/svg+xml;base64,${btoa(`
+        {/* Facility markers */}
+        {filteredFacilities.map((facility) => {
+          const position = {
+            lat: facility.location.coordinates[1],
+            lng: facility.location.coordinates[0],
+          };
+          const isSelected = selectedFacilityId === facility._id;
+
+          // Define icon configuration with proper Google Maps API classes
+          // Only create icon config if google.maps is available
+          let iconConfig;
+          if (
+            typeof google !== "undefined" &&
+            google.maps &&
+            google.maps.Size &&
+            google.maps.Point
+          ) {
+            iconConfig = isSelected
+              ? {
+                  url: SELECTED_PIN_SVG,
+                  scaledSize: new google.maps.Size(20, 48),
+                  anchor: new google.maps.Point(10, 48),
+                }
+              : {
+                  url: `data:image/svg+xml;base64,${btoa(`
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DC2626" width="32" height="32">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                       </svg>
                     `)}`,
-                    scaledSize: new google.maps.Size(32, 32),
-                    anchor: new google.maps.Point(16, 32),
-                  };
-            }
+                  scaledSize: new google.maps.Size(32, 32),
+                  anchor: new google.maps.Point(16, 32),
+                };
+          }
 
-            return (
-              <Marker
-                key={facility._id}
-                position={position}
-                title={facility.organization}
-                icon={iconConfig}
-                onClick={() =>
-                  handleMarkerClick(facility._id, [
-                    facility.location.coordinates[1],
-                    facility.location.coordinates[0],
-                  ])
-                }
-              />
-            );
-          })}
+          return (
+            <Marker
+              key={facility._id}
+              position={position}
+              title={facility.organization}
+              icon={iconConfig}
+              onClick={() =>
+                handleMarkerClick(facility._id, [
+                  facility.location.coordinates[1],
+                  facility.location.coordinates[0],
+                ])
+              }
+            />
+          );
+        })}
 
-          {/* Info windows for facilities */}
-          {filteredFacilities.map((facility) => {
-            if (activeMarker !== facility._id) return null;
+        {/* Info windows for facilities */}
+        {filteredFacilities.map((facility) => {
+          if (activeMarker !== facility._id) return null;
 
-            const position = {
-              lat: facility.location.coordinates[1],
-              lng: facility.location.coordinates[0],
-            };
+          const position = {
+            lat: facility.location.coordinates[1],
+            lng: facility.location.coordinates[0],
+          };
 
-            return (
-              <InfoWindow
-                key={`info-${facility._id}`}
-                position={position}
-                onCloseClick={() => setActiveMarker(null)}
-              >
-                <div className="text-sm">
-                  <strong>{facility.organization}</strong>
-                  <br />
-                  <span className="text-gray-600">{facility.facilityType}</span>
-                  <br />
-                  <span className="text-gray-500">
-                    {facility.area}, {facility.city}
-                  </span>
-                  {facility.estimatedMinutes && (
-                    <>
-                      <br />
-                      <span className="text-blue-600 font-medium">
-                        {facility.estimatedMinutes} mins away
-                      </span>
-                    </>
-                  )}
-                </div>
-              </InfoWindow>
-            );
-          })}
+          return (
+            <InfoWindow
+              key={`info-${facility._id}`}
+              position={position}
+              onCloseClick={() => setActiveMarker(null)}
+            >
+              <div className="text-sm">
+                <strong>{facility.organization}</strong>
+                <br />
+                <span className="text-gray-600">{facility.facilityType}</span>
+                <br />
+                <span className="text-gray-500">
+                  {facility.area}, {facility.city}
+                </span>
+                {facility.estimatedMinutes && (
+                  <>
+                    <br />
+                    <span className="text-blue-600 font-medium">
+                      {facility.estimatedMinutes} mins away
+                    </span>
+                  </>
+                )}
+              </div>
+            </InfoWindow>
+          );
+        })}
       </GoogleMap>
 
       {/* Slider at the bottom */}

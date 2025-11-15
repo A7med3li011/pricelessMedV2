@@ -1,14 +1,14 @@
-import { getBlogsDynamic } from "@/src/app/actions/home.action";
-import HealthBanner from "./health-banner";
+import { getNewsDynamic } from "@/src/app/actions/home.action";
+import { getTranslations } from "next-intl/server";
 
-import HealthGridAnimated from "./health-grid-animated";
 import AnimatedSection from "../ui/animated-section";
-import Pagination from "../ui/pagination";
+import NewsBanner from "./news-banner";
+import NewsGridAnimated from "./news-grid-animated";
 import { PaginationProvider } from "../providers/pagination-provider";
-import HealthHubSkeleton from "./health-hub-skeleton";
-// import Pagination from "../ui/pagination";
+import HealthHubSkeleton from "../health-hub-dynamic/health-hub-skeleton";
+import Pagination from "../ui/pagination";
 
-export default async function HealthGrid({
+export default async function NewsGrid({
   lang,
   page,
   pageLimit,
@@ -17,12 +17,13 @@ export default async function HealthGrid({
   page: number;
   pageLimit: number;
 }) {
-  const res = await getBlogsDynamic(lang, page, pageLimit);
+  const t = await getTranslations({ locale: lang, namespace: "home.news" });
+  const res = await getNewsDynamic(lang,page,pageLimit);
   if (!res.success || !res.data) {
     return (
       <section className="text-center py-10">
         <p className="text-red-500">
-          {res.error?.message || "Something went wrong while loading Service"}
+          {res.error?.message || t("error")}
         </p>
       </section>
     );
@@ -31,7 +32,7 @@ export default async function HealthGrid({
   if (res.data.length === 0) {
     return (
       <section className="text-center py-10">
-        <p className="text-gray-500">No blogs available</p>
+        <p className="text-gray-500">{t("noNews")}</p>
       </section>
     );
   }
@@ -40,10 +41,10 @@ export default async function HealthGrid({
     <section>
       <PaginationProvider alternative={<HealthHubSkeleton />}>
         <AnimatedSection animation="slideLeft" duration={0.9}>
-          <HealthBanner data={res.data[res.data.length - 1]} />
+          <NewsBanner data={res.data[res.data.length - 1]} pressRelease={t("pressRelease")} />
         </AnimatedSection>
         <AnimatedSection animation="fade">
-          <HealthGridAnimated data={res.data} />
+          <NewsGridAnimated data={res.data} pressRelease={t("pressRelease")} />
         </AnimatedSection>
         <Pagination
           page={res.pagination?.currentPage}

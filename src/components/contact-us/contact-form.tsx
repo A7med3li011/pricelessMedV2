@@ -86,7 +86,6 @@ export default function ContactForm() {
       formData.append("message", data.message);
 
       const res = await contactusAction(formData);
-      console.log("Response:", res);
 
       if (res.success) {
         // Success

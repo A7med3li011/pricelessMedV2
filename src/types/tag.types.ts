@@ -48,6 +48,7 @@ export interface FAQ {
 
 export interface News {
   id: string | number;
+  _id: string | number;
   title: string;
   imageUrl: string;
   date: string;
@@ -57,6 +58,7 @@ export interface News {
 
 export interface Blog {
   id: string | number;
+  _id: string | number;
   title: string;
   imageUrl: string;
   date: string;

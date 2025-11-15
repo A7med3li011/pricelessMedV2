@@ -20,7 +20,6 @@ export const PaginationProvider = ({
   alternative?: ReactNode;
 }) => {
   const [pending, setPendinggg] = useState(false);
-  //   console.log(pending, "from pagaination provider");
 
   return (
     <PaginationContext.Provider value={{ pending, setPendinggg }}>

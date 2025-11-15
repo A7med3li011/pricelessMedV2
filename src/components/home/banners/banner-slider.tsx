@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
 import { useLocale } from "next-intl";
+import placeHolder from "../../../../public/assets/place-holder.svg";
 
 interface BannerSliderProps {
   data: Banner[];
@@ -13,6 +14,14 @@ interface BannerSliderProps {
 export default function BannerSlider({ data }: BannerSliderProps) {
   const locale = useLocale();
   const isRTL = locale === "ar";
+
+  const [imageErrors, setImageErrors] = useState<Set<string | number>>(
+    new Set()
+  );
+
+  const handleImageError = (bannerId: string | number) => {
+    setImageErrors((prev) => new Set(prev).add(bannerId));
+  };
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -79,10 +88,15 @@ export default function BannerSlider({ data }: BannerSliderProps) {
                 >
                   <section className="relative w-full h-[500px] rounded-lg overflow-hidden">
                     <Image
-                      src={ele.imageUrl}
+                      src={
+                        imageErrors.has(ele._id)
+                          ? placeHolder
+                          : ele?.imageUrl || placeHolder
+                      }
                       fill
                       alt={ele?.title}
                       className=" object-cover"
+                      onError={() => handleImageError(ele._id)}
                     />
                   </section>
                 </section>

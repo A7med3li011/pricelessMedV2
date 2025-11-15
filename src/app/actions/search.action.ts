@@ -20,8 +20,7 @@ export default async function SearchHomeFacility(
 
     const result = await response.json();
 
-    // Debug: Log the API response to check if estimatedMinutes is included
-    console.log("API Response:", JSON.stringify(result, null, 2));
+ 
 
     return {
       data: result.data || [],
